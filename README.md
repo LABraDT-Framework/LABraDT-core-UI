@@ -2,7 +2,7 @@
 
 **Component:** UI Controller and Web Frontend  
 **Port:** 8090  
-**Overview of all LABraDT projects and the architecture diagram:** [README.md](README.md)
+**Overview of all LABraDT projects and the architecture diagram:** [README.md](https://github.com/LABraDT-Framework)
 
 | Component | Project folder (next to this folder) | Port |
 |---|---|---|
@@ -16,6 +16,7 @@
 
 **Prerequisites:** Python 3.12, a JDK (`JAVA_HOME` or `java` on the `PATH`), and Maven (`mvn` on the `PATH`, `MAVEN_CMD`, or the Maven wrapper of a project). The first start builds every project; that needs the Maven repositories, so the first start takes a few minutes.
 
+On Windows use:
 ```powershell
 start-ui.bat            # creates .venv, installs requirements.txt, starts the UI
 ```
@@ -230,14 +231,3 @@ output/
 ├── config/ data/ deploy/ docs/ examples/ mock/ scripts/ tests/ tools/ diagrams/
 └── requirements.txt, package.json
 ```
-
----
-
-## Documentation Map
-
-The documentation of this component lives in this repository alongside the code. The overview of all LABraDT projects and the architecture diagram are in [README.md](README.md).
-
-- [README-UI.md](README-UI.md): this file — UI quick start, project hand-over, process control, environment variables, and migration reference.
-- [README-Gateway.md](README-Gateway.md): Gateway component — MQTT quick start, interface definitions, expandability, tutorial, troubleshooting.
-- [README-Engine.md](README-Engine.md): Engine component — rule evaluation, state machine, extension points, REST API reference, integration contracts.
-- [README-Runtime.md](README-Runtime.md): Runtime component — service registration, triggering, execution lifecycle, plugin system.
