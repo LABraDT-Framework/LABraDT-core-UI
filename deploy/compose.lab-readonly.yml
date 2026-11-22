@@ -1,0 +1,78 @@
+# Optional first-contact lab overlay. Run with the base file first and a NEW
+# project name; see ../../GUC指南/docs/lab-deployment.md from V0.9.1. Requires Compose >= 2.24.4.
+# No real device address is bundled. Place confirmed configs in config/gateway/lab.
+services:
+  ui:
+    environment:
+      ENGINE_MACHINE_ID: ${GUC_LAB_MACHINE_ID:-lab-machine-1}
+    env_file: !override
+      - {path: ./config/opcua/lab.env, required: false}
+    ports: !override ["127.0.0.1:8090:8090"]
+    volumes:
+      - ./config/gateway/lab:/app/config/gateway/backend
+      - ./data/gateway-plugins/lab:/app/data/gateway-plugins/backend
+      - ./data/opcua-security/lab:/opcua-security
+
+  gateway:
+    env_file: !override
+      - {path: ./config/opcua/lab.env, required: false}
+    environment:
+      SPRING_APPLICATION_JSON: '{"dt":{"framework":{"safe-mode":true}}}'
+    ports: !override ["127.0.0.1:8085:8085"]
+    depends_on: !reset {}
+    volumes: !override
+      - ../GUC_AASFramework-upload/gateway:/source:ro
+      - ./config/gateway/lab:/docker-configs:ro
+      - ./data/gateway-plugins/lab:/gateway-plugins:ro
+      - ./deploy/gateway-plugin-host:/plugin-host-source:ro
+      - ./deploy/start-gateway.sh:/deployment/start-gateway.sh:ro
+      - maven-cache:/root/.m2
+      - lab-gateway-logs:/workspace/logs
+      - ./data/opcua-security/lab:/opcua-security
+
+  engine:
+    environment:
+      SPRING_APPLICATION_JSON: '{"engine":{"lifecycle":{"autoStart":false}},"gateway":{"machineId":"${GUC_LAB_MACHINE_ID:-lab-machine-1}"}}'
+    ports: !reset []
+    volumes:
+      - lab-engine-storage:/workspace/storage
+
+  service-manager:
+    ports: !reset []
+
+  aas-repository:
+    ports: !reset []
+
+  opcua-cnc:
+    profiles: [mock]
+    ports: !reset []
+  opcua-molder:
+    profiles: [mock]
+    ports: !reset []
+  mqtt-broker:
+    profiles: [mock]
+    ports: !reset []
+  mqtt-publisher:
+    profiles: [mock]
+
+  demo-controller:
+    profiles: [demo]
+    ports: !reset []
+  demo-gateway:
+    profiles: [demo]
+    ports: !reset []
+  demo-opcua-cnc:
+    profiles: [demo]
+    ports: !reset []
+  demo-opcua-molder:
+    profiles: [demo]
+    ports: !reset []
+  demo-mqtt-broker:
+    profiles: [demo]
+    ports: !reset []
+  demo-mqtt-publisher:
+    profiles: [demo]
+
+volumes:
+  lab-gateway-logs:
+  lab-engine-storage:

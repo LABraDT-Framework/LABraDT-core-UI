@@ -1,0 +1,18 @@
+FROM python:3.12-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY app.py ./
+COPY backend/ ./backend/
+COPY frontend/ ./frontend/
+
+ENV UI_HOST=0.0.0.0
+ENV UI_PORT=8090
+ENV GATEWAY_HEALTH_URL=http://gateway:8085/api/submodel/health
+
+EXPOSE 8090
+
+CMD ["python", "app.py"]

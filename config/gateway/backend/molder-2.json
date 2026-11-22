@@ -1,0 +1,28 @@
+{
+  "machineId": "molder-2",
+  "machineType": "InjectionMolder",
+  "protocol": "OPC_UA",
+  "connection": {
+    "endpoint": "opc.tcp://opcua-molder:4841/injection-molder/mock/"
+  },
+  "mappings": [
+    {
+      "sourceAddress": "ns=2;s=ClampForce",
+      "idShort": "ClampForce",
+      "valueType": "xs:double",
+      "unit": "kN"
+    },
+    {
+      "sourceAddress": "ns=2;s=InjectionPressure",
+      "idShort": "InjectionPressure",
+      "valueType": "xs:double",
+      "unit": "bar"
+    },
+    {
+      "sourceAddress": "ns=2;s=MoldTemperature",
+      "idShort": "MoldTemperature",
+      "valueType": "xs:double",
+      "unit": "°C"
+    }
+  ]
+}

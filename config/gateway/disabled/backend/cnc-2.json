@@ -1,0 +1,42 @@
+{
+  "machineId": "cnc-2",
+  "machineType": "CNC",
+  "protocol": "OPC_UA",
+  "connection": {
+    "endpoint": "opc.tcp://opcua-cnc:4840/cnc/mock/server/",
+    "securityPolicy": "None",
+    "reconnectInitialBackoffMs": 1000,
+    "reconnectMaxBackoffMs": 30000,
+    "quietWindowMs": 15000
+  },
+  "mappings": [
+    {
+      "sourceAddress": "ns=2;i=126",
+      "idShort": "ActJogIncrement",
+      "valueType": "xs:double",
+      "unit": "sec",
+      "category": "VARIABLE"
+    },
+    {
+      "sourceAddress": "ns=2;i=45",
+      "idShort": "ActLoad",
+      "valueType": "xs:double",
+      "unit": "",
+      "category": "VARIABLE"
+    },
+    {
+      "sourceAddress": "ns=2;i=26",
+      "idShort": "Descripti",
+      "valueType": "xs:string",
+      "unit": "",
+      "category": "VARIABLE"
+    },
+    {
+      "sourceAddress": "ns=2;i=262",
+      "idShort": "Description",
+      "valueType": "xs:string",
+      "unit": "",
+      "category": "VARIABLE"
+    }
+  ]
+}

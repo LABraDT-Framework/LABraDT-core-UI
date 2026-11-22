@@ -1,0 +1,43 @@
+{
+  "machineId": "new-machine1111",
+  "machineType": "Generic",
+  "protocol": "OPC_UA",
+  "connection": {
+    "securityPolicy": "None",
+    "securityMode": "None",
+    "endpoint": "opc.tcp://192.168.178.26:4841",
+    "reconnectInitialBackoffMs": 1000,
+    "reconnectMaxBackoffMs": 30000,
+    "quietWindowMs": 0
+  },
+  "mappings": [
+    {
+      "sourceAddress": "ns=1;i=1010",
+      "idShort": "JobNumber1",
+      "valueType": "xs:double",
+      "unit": "",
+      "category": "VARIABLE"
+    },
+    {
+      "sourceAddress": "ns=1;i=1011",
+      "idShort": "JobNumber2",
+      "valueType": "xs:double",
+      "unit": "",
+      "category": "VARIABLE"
+    },
+    {
+      "sourceAddress": "ns=1;i=1012",
+      "idShort": "JobNumber3",
+      "valueType": "xs:double",
+      "unit": "",
+      "category": "VARIABLE"
+    },
+    {
+      "sourceAddress": "ns=1;i=1013",
+      "idShort": "JobNumber4",
+      "valueType": "xs:double",
+      "unit": "",
+      "category": "VARIABLE"
+    }
+  ]
+}

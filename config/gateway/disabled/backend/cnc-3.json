@@ -1,0 +1,43 @@
+{
+  "machineId": "cnc-3",
+  "machineType": "CNC",
+  "protocol": "OPC_UA",
+  "connection": {
+    "endpoint": "opc.tcp://opcua-cnc:4840/cnc/mock/server/"
+  },
+  "mappings": [
+    {
+      "sourceAddress": "ns=2;i=334",
+      "idShort": "VendorName",
+      "valueType": "xs:string",
+      "category": "CONSTANT",
+      "unit": ""
+    },
+    {
+      "sourceAddress": "ns=2;i=8",
+      "idShort": "XAxisStatus",
+      "valueType": "xs:string",
+      "unit": "",
+      "valueMap": {
+        "1": "ACTIVE",
+        "0": "INACTIVE"
+      }
+    },
+    {
+      "sourceAddress": "ns=2;i=45",
+      "idShort": "ActLoad",
+      "valueType": "xs:double",
+      "unit": "%",
+      "validRange": [
+        0,
+        100
+      ]
+    },
+    {
+      "sourceAddress": "ns=2;i=131",
+      "idShort": "OperationMode",
+      "valueType": "xs:string",
+      "unit": ""
+    }
+  ]
+}

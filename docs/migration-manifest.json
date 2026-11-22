@@ -1,0 +1,700 @@
+{
+  "from": "UI_V0.9",
+  "to": "V0.9.1",
+  "updated": "2026-10-08",
+  "files": [
+    {
+      "source": "assets/aas-service-links.js",
+      "sha256": "ab542536bc7bd80c3473c292b663f251736110e4db9aefcff7f257a6dbc6f65f",
+      "targets": [
+        "frontend/assets/js/features/aas-service-links.js"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "assets/aas-templates.js",
+      "sha256": "a2b5a6d66c59fe0217fece696ed04cecca7e5e5efc6815cfb0cff5323381c4fb",
+      "targets": [
+        "frontend/assets/js/model/aas-templates.js"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "assets/backend-aas-tree.js",
+      "sha256": "e5941ebdc7e4f3154706587b2cca1ce716c176208bb0b2a349dfc3760ffd9c4e",
+      "targets": [
+        "frontend/assets/js/backend/backend-aas-tree.js"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "assets/backend-bindings.js",
+      "sha256": "ffca3c16b8479ddc40046d4794e634a42b440c4f57d8f9a001c1e432d99ff024",
+      "targets": [
+        "frontend/assets/js/backend/backend-bindings.js"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "assets/backend-lifecycle.js",
+      "sha256": "40088caff136b7d41f1ba09e422f917c9565d430980721bccb9d8157b54c7f17",
+      "targets": [
+        "frontend/assets/js/backend/backend-lifecycle.js"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "assets/backend-links.js",
+      "sha256": "21cb6fe9221150ada9b8b6f809ebcbfc9e887e2b7285c05c659ff03df4660542",
+      "targets": [
+        "frontend/assets/js/backend/backend-links.js"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "assets/backend-repository.js",
+      "sha256": "8eed39cef75af53ca6807015dbb1499c6689ffe70f88ad06d7c212a8b0aaaf9d",
+      "targets": [
+        "frontend/assets/js/backend/backend-repository.js"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "assets/backend-rule-test.js",
+      "sha256": "2e3cc86c5bd893bbd79af545230c598086583a1d377872fbccd73f3d1b4e3ebf",
+      "targets": [
+        "frontend/assets/js/backend/backend-rule-test.js"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "assets/backend-services.js",
+      "sha256": "b80dc59dc15c80997a6becdedb53aa15c56ac2d10cd414810b78fbf57d357f90",
+      "targets": [
+        "frontend/assets/js/backend/backend-services.js"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "assets/backend-workspace.js",
+      "sha256": "2946130a0efe7269cd1a8b699edef4924bb09fbe1b43e96d12d2d835f1d8b510",
+      "targets": [
+        "frontend/assets/js/backend/backend-workspace.js"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "assets/bindings.js",
+      "sha256": "ebb556f9d6862a648822649fee5ddcf3511a1515cc6f89fdc86b4ac00384d298",
+      "targets": [
+        "frontend/assets/js/features/bindings.js"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "assets/engine-backend.js",
+      "sha256": "e05b4f9edadf63e06cfea50355f2e1af389a8ebff85d45a2585ca24e66ef894c",
+      "targets": [
+        "frontend/assets/js/backend/engine-backend.js"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "assets/engine-runtime.js",
+      "sha256": "c07bf546f1b20d23e756ed0413891fdee57b4cc702c1d778a4e20ef1466b8ac0",
+      "targets": [
+        "frontend/assets/js/features/engine-runtime.js"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "assets/environment.js",
+      "sha256": "3af01f81e2b661ba516b652bfa2f0ae06dd8aa0590956f868615f46c54c89dd0",
+      "targets": [
+        "frontend/assets/js/model/environment.js"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "assets/isw-logo.png",
+      "sha256": "43d3a4dfe78b387aa5488495912ab5f97d6bcaa3e66801e118ad7f7c43db8022",
+      "targets": [
+        "frontend/assets/images/isw-logo.png"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "assets/LABraDT_v2-transparent.png",
+      "sha256": "fc70022eed3e8d47b5093d735046336e6198883a44fa1b1ae3873c8bdf163651",
+      "targets": [
+        "frontend/assets/images/LABraDT_v2-transparent.png"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "assets/LABraDT_v2.jpg",
+      "sha256": "d005cff326c0ba1f5dd225e2ea3579a4f22da68e40a0469114cbbbb608e123c3",
+      "targets": [
+        "frontend/assets/images/LABraDT_v2.jpg"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "assets/monitor.js",
+      "sha256": "37eee598bddf623bdb29bc74a7db4e47e39ccd0d1640c0833b858c1f35dc272c",
+      "targets": [
+        "frontend/assets/js/features/monitor.js"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "assets/plugin-flow.js",
+      "sha256": "ece424d132d88495b5699f1bd1190011a602dfb2c62b15224a788f50caa10cfb",
+      "targets": [
+        "frontend/assets/js/features/plugin-flow.js"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "assets/rule-editor.js",
+      "sha256": "0a527131e479fcdd04df08749a42ce39deaa95aa3eae05532e5efa8741632713",
+      "targets": [
+        "frontend/assets/js/features/rule-editor.js"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "assets/service-actions.js",
+      "sha256": "fd9a46c74ca0e979b3f6d9a996ceae2992ed1ea995f677c4ec8cb9e555692221",
+      "targets": [
+        "frontend/assets/js/model/service-actions.js"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "assets/shared-model.js",
+      "sha256": "bef16ae7e5b8eb31cb81f3900d4441496cf178da5a200b6a82d3a69fa37c673b",
+      "targets": [
+        "frontend/assets/js/model/shared-model.js"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "assets/submodel-upload.js",
+      "sha256": "721dbb4fcb5969abed0d808e7740aadcca2afc36a688f92d395ef0c49bb519ff",
+      "targets": [
+        "frontend/assets/js/features/submodel-upload.js"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "assets/unistuttgart-logo.png",
+      "sha256": "648f5dfcbc387692004e6591db42b420a3e1f71aec622b168d8aff3edad95031",
+      "targets": [
+        "frontend/assets/images/unistuttgart-logo.png"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "index.html",
+      "sha256": "77ed56dbea40003962d53c4b2d33cfdc5b586d66fb590cefd10638c6eb0b50aa",
+      "targets": [
+        "frontend/assets/css/base.css",
+        "frontend/assets/css/overview.css",
+        "frontend/assets/css/workspace.css",
+        "frontend/assets/css/rules.css",
+        "frontend/assets/css/dialogs.css",
+        "frontend/assets/css/responsive.css",
+        "frontend/assets/js/core/ui.js",
+        "frontend/assets/js/core/workspace.js",
+        "frontend/assets/js/pages/aas.js",
+        "frontend/assets/js/pages/gateway.js",
+        "frontend/assets/js/pages/services.js",
+        "frontend/assets/js/pages/actions.js",
+        "frontend/assets/js/app/state.js",
+        "frontend/assets/js/app/bootstrap.js",
+        "frontend/index.html"
+      ],
+      "note": "Extract CSS and functions by responsibility; preserve state/startup statement order and classic-script API"
+    },
+    {
+      "source": "aas_proxy.py",
+      "sha256": "d21fa32857b4084d006c9daeb72fa7a40634d2f8e2f8b82d367796c2b09445f5",
+      "targets": [
+        "backend/aas_proxy.py"
+      ],
+      "note": "Relocated; package imports and directory roots updated"
+    },
+    {
+      "source": "aas_repository_bridge.py",
+      "sha256": "6a659ed96ef6c0ae38e1db072feca9b177419d9ad429cf9e2c7e88c3e465eb59",
+      "targets": [
+        "tools/legacy/aas_repository_bridge.py"
+      ],
+      "note": "Relocated; package imports and directory roots updated"
+    },
+    {
+      "source": "app.py",
+      "sha256": "46d1ed440e1b2e7c530288c6c75ae601e43cdfb20ee8960abbf29263ede98cd1",
+      "targets": [
+        "backend/app.py",
+        "backend/settings.py"
+      ],
+      "note": "Relocated; package imports and directory roots updated"
+    },
+    {
+      "source": "backend_bindings.py",
+      "sha256": "4d0294c13d4466be66c8d6d4ff407856d6da7e8fed0d02912e6081d153baa3e7",
+      "targets": [
+        "backend/backend_bindings.py"
+      ],
+      "note": "Relocated; package imports and directory roots updated"
+    },
+    {
+      "source": "backend_lifecycle.py",
+      "sha256": "b5945e3faf0beabffffb022850952124fda9781ce05cf666f9798e10ddf286ec",
+      "targets": [
+        "backend/backend_lifecycle.py"
+      ],
+      "note": "Relocated; package imports and directory roots updated"
+    },
+    {
+      "source": "backend_workspace.py",
+      "sha256": "aa56c4cd238aed4399a37343b36899e3440c81de9bfd4049fc3a100a1a8b1f5d",
+      "targets": [
+        "backend/backend_workspace.py"
+      ],
+      "note": "Relocated; package imports and directory roots updated"
+    },
+    {
+      "source": "demo_gateway_proxy.py",
+      "sha256": "cdf38accc07691a04c1c729a7b58d35180e65dda702094482a9ec04ea024cf0f",
+      "targets": [
+        "backend/demo_gateway_proxy.py"
+      ],
+      "note": "Relocated; package imports and directory roots updated"
+    },
+    {
+      "source": "gateway_proxy.py",
+      "sha256": "6ab1d94971afda942e19deb79485d5805172217cb27a480da87fd81655318a4c",
+      "targets": [
+        "backend/gateway_proxy.py"
+      ],
+      "note": "Relocated; package imports and directory roots updated"
+    },
+    {
+      "source": "prepare_aas.py",
+      "sha256": "1d68adc176737d3cfd4242be266c6ea16f2b13ebdf745d4d268a8418bf528780",
+      "targets": [
+        "scripts/prepare_aas.py"
+      ],
+      "note": "Relocated; package imports and directory roots updated"
+    },
+    {
+      "source": "repository_proxy.py",
+      "sha256": "0403149092ad28b153ecf9f41aad4f84f8ed0e8c2af596efef7c5728c5a5ba16",
+      "targets": [
+        "backend/repository_proxy.py"
+      ],
+      "note": "Relocated; package imports and directory roots updated"
+    },
+    {
+      "source": "runtime_proxy.py",
+      "sha256": "d21fa7bce7b2dc22160e3aa34c5969afc8111ea5649098d4b7cbb2569c91389c",
+      "targets": [
+        "backend/runtime_proxy.py"
+      ],
+      "note": "Relocated; package imports and directory roots updated"
+    },
+    {
+      "source": "service_seed.py",
+      "sha256": "1966e41ba3d6efb0a2a728aa8cc7cc51b7bfb00674550304b0f1988e5f4faefa",
+      "targets": [
+        "scripts/service_seed.py"
+      ],
+      "note": "Relocated; package imports and directory roots updated"
+    },
+    {
+      "source": "template_import.py",
+      "sha256": "3e53c9ffe6ad084c07a63b5f9002d33216084c2da32d6a1ea20831fc92a7c8d6",
+      "targets": [
+        "backend/template_import.py"
+      ],
+      "note": "Relocated; package imports and directory roots updated"
+    },
+    {
+      "source": "docker-configs/cnc-line1.json",
+      "sha256": "f4119b12634211bf829ba783a6b4f4a42355e11af4dbd0a63fba15dc1abb5685",
+      "targets": [
+        "config/gateway/backend/cnc-line1.json"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "docker-configs/molder-1.json",
+      "sha256": "e4278d5d61cfbbeaccad3f181b478776bb35329453d183fa68c654e12196a7a2",
+      "targets": [
+        "config/gateway/backend/molder-1.json"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "docker-configs/molder-2.json",
+      "sha256": "f40465d849942b840df272041a111ee80306570f622b53ba3ec671de2d492606",
+      "targets": [
+        "config/gateway/backend/molder-2.json"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "docker-configs/molder-mqtt.json",
+      "sha256": "8cdf16875e08a9859e6e00e8f949e36585bbf526fb32fc1693ae6c35d959028e",
+      "targets": [
+        "config/gateway/backend/molder-mqtt.json"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "demo-configs/cnc-line1.json",
+      "sha256": "1bf45dbf836b64fafcd5ef395d7bfb62c4502e11b98daad84b4a5bab1b6a15b8",
+      "targets": [
+        "config/gateway/demo/cnc-line1.json"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "demo-configs/molder-1.json",
+      "sha256": "a5e98ac54e492334622fe324973718e61784dd8f299a6d8d20d536a91d1e2eac",
+      "targets": [
+        "config/gateway/demo/molder-1.json"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "demo-configs/molder-2.json",
+      "sha256": "73a0a667dab1321efb9e477368e99edb6c922884db9d4c641eb8f653635f41ed",
+      "targets": [
+        "config/gateway/demo/molder-2.json"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "demo-configs/molder-mqtt.json",
+      "sha256": "b9653b3ff57cd42db1ca7dad8237015dd1ce2248c26ff8b7fb5406230dd02296",
+      "targets": [
+        "config/gateway/demo/molder-mqtt.json"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "disabled-configs/backend/cnc-2.json",
+      "sha256": "b14d0e4566e16c499d1c67fda8a19c85f43e59470166175b9fdf20180508007a",
+      "targets": [
+        "config/gateway/disabled/backend/cnc-2.json"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "disabled-configs/backend/cnc-3.json",
+      "sha256": "22336a7977a2f6ee6ede60fc1540f5dc651ca6b2f2a3ed9c261db5cc9f5d4ed0",
+      "targets": [
+        "config/gateway/disabled/backend/cnc-3.json"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "disabled-configs/demo/cnc-2.json",
+      "sha256": "eeacec1162410f0df4265e2daf837fa47acbf0a0ef37d203e21d5d59c714031a",
+      "targets": [
+        "config/gateway/disabled/demo/cnc-2.json"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "disabled-configs/demo/cnc-3.json",
+      "sha256": "5dfd74be5042b5309a80971ac27085fb1b34dc564f5347c76b66d72862bbdb1b",
+      "targets": [
+        "config/gateway/disabled/demo/cnc-3.json"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "disabled-configs/README.md",
+      "sha256": "e27e8ac051c111651ee1072231df8ff7693aa55cf24732c7b91df8f65cd50e9f",
+      "targets": [
+        "config/gateway/disabled/README.md"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "repository-data/MachineTool.aasx",
+      "sha256": "eae03ba5174d768e6cf31288c1d6e8ea9f469d29441f8530ef5b9d0be6b81d73",
+      "targets": [
+        "data/repository/MachineTool.aasx"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "repository-data/Molder.aasx",
+      "sha256": "c150215992a60ec3116a36c4479f201ead48f4bab99b2dc051b543b845f8ed0c",
+      "targets": [
+        "data/repository/Molder.aasx"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "mock/injection_molder_server.py",
+      "sha256": "aa5a25962c3a57d6ba10e63b9b5c0f3e799f7352f7b434652616a6f2ed6828b4",
+      "targets": [
+        "mock/injection_molder_server.py"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "mock/mqtt_molder_publisher.py",
+      "sha256": "a6807cc08b3acda5a362f448475e7a0cf9c963ecc37dc7778a3495a6544f1699",
+      "targets": [
+        "mock/mqtt_molder_publisher.py"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "mock/sample_server.py",
+      "sha256": "5eb74c563bc55008e1cab0b0488c1ad3193cea8973ce3a99916d73084a07a872",
+      "targets": [
+        "mock/sample_server.py"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "requirements.txt",
+      "sha256": "0c26d22e31e07e1362cd03287b74e1deafc7804576a72a818372ff4f65665d4b",
+      "targets": [
+        "requirements.txt"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "basyx.properties",
+      "sha256": "bb4e871bbbdd8192119aef12a9334fbdcf3838b68c61accc243abb52a95e02b8",
+      "targets": [
+        "config/basyx.properties"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "mosquitto/mosquitto.conf",
+      "sha256": "5bbf715cb2518197f7ad99ceff3986bf3e2b137798aae23613ce39cf5f24542c",
+      "targets": [
+        "config/mosquitto/mosquitto.conf"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": "README.md",
+      "sha256": "41d5c517d81048a923c3f946c6dd301ea71bc20ab2dccba5273099d0f9c05b7a",
+      "targets": [
+        "docs/reference-v0.9.md"
+      ],
+      "note": "Moved; historical documentation labelled"
+    },
+    {
+      "source": "SHARED_MODEL.md",
+      "sha256": "aba153079e4c0751a675a7decf125a52e26c8d65b6cbe7ab999e7326476ada81",
+      "targets": [
+        "docs/shared-model.md"
+      ],
+      "note": "Moved; historical documentation labelled"
+    },
+    {
+      "source": "docker-compose.yml",
+      "sha256": "fb651ba5dd5ad1120d21823824651ea5ae912dd04f7af457089755f9f9ea5553",
+      "targets": [
+        "docker-compose.yml"
+      ],
+      "note": "Updated relative mounts and Dockerfile paths; ports and volume names retained. UI starts independently of backend readiness and uses restart: unless-stopped."
+    },
+    {
+      "source": "Dockerfile.ui",
+      "sha256": "50c1951c5831175c15124aefcb3b418543b36bfe8528f7ff2e732612ea595ff6",
+      "targets": [
+        "deploy/Dockerfile.ui"
+      ],
+      "note": "Copy backend package and frontend tree"
+    },
+    {
+      "source": "Dockerfile.mocks",
+      "sha256": "e2f3056337a5ca2f3e5ceaa8cf42dde83667ad2cd7b43717eae89164b0f1b357",
+      "targets": [
+        "deploy/Dockerfile.mocks"
+      ],
+      "note": "Moved without content changes"
+    },
+    {
+      "source": ".dockerignore",
+      "sha256": "2dfd510f82ad7ab4d8eba832d66560f8ae7af522352ee7daf3c52b3db18f731b",
+      "targets": [
+        ".dockerignore"
+      ],
+      "note": "Updated cache/data exclusions for new structure"
+    },
+    {
+      "source": "tests/aas-service-links.test.cjs",
+      "sha256": "c3140201e6a7b41acaf5967b2b5cd906ec583b6f05df16a5a151d9c24c2fe426",
+      "targets": [
+        "tests/js/aas-service-links.test.cjs"
+      ],
+      "note": "Moved; imports/fixture paths updated; browser host and executable configurable"
+    },
+    {
+      "source": "tests/aas-shared-editor.test.cjs",
+      "sha256": "2173bf8727a7cecfa142a97d3661f3d81a4b98df38d31e917b8cdb1ae05bcbd5",
+      "targets": [
+        "tests/js/aas-shared-editor.test.cjs"
+      ],
+      "note": "Moved; imports/fixture paths updated; browser host and executable configurable"
+    },
+    {
+      "source": "tests/backend-aas-tree.test.cjs",
+      "sha256": "edc3ba0f4fd416bc0a9d0ca950f708abc78a8930ed58a16667dabfd091c21c8b",
+      "targets": [
+        "tests/js/backend-aas-tree.test.cjs"
+      ],
+      "note": "Moved; imports/fixture paths updated; browser host and executable configurable"
+    },
+    {
+      "source": "tests/backend-lifecycle.test.cjs",
+      "sha256": "ae9a395aecbc5441647eb73e152b936866e14909f90122a6768a98cd99e1e421",
+      "targets": [
+        "tests/js/backend-lifecycle.test.cjs"
+      ],
+      "note": "Moved; imports/fixture paths updated; browser host and executable configurable"
+    },
+    {
+      "source": "tests/backend-rule-test.test.cjs",
+      "sha256": "78f0e4072af606a012afe2507e2bfe175ab8292c9063a7110f6643ec2120f600",
+      "targets": [
+        "tests/js/backend-rule-test.test.cjs"
+      ],
+      "note": "Moved; imports/fixture paths updated; browser host and executable configurable"
+    },
+    {
+      "source": "tests/bindings.test.cjs",
+      "sha256": "ef859b084e6234c458cd80c70435b2c03c53eaa3ff44abc850562c10b66c2822",
+      "targets": [
+        "tests/js/bindings.test.cjs"
+      ],
+      "note": "Moved; imports/fixture paths updated; browser host and executable configurable"
+    },
+    {
+      "source": "tests/engine-overview-ui.qa.cjs",
+      "sha256": "2d14f4e591fd9677426418ece63408b199164d7f806e558465b764cc92513648",
+      "targets": [
+        "tests/browser/engine-overview-ui.qa.cjs"
+      ],
+      "note": "Moved; imports/fixture paths updated; browser host and executable configurable"
+    },
+    {
+      "source": "tests/environment.test.cjs",
+      "sha256": "acef73f4a6bc7d3a4afffd8d81c9594aef219b30bb7eb9d990875edc323a0b66",
+      "targets": [
+        "tests/js/environment.test.cjs"
+      ],
+      "note": "Moved; imports/fixture paths updated; browser host and executable configurable"
+    },
+    {
+      "source": "tests/gateway-multi-sme.qa.cjs",
+      "sha256": "32003b262346da63ebb01a73af39c4874539e15304d9396491eab26cff15c65a",
+      "targets": [
+        "tests/browser/gateway-multi-sme.qa.cjs"
+      ],
+      "note": "Moved; imports/fixture paths updated; browser host and executable configurable"
+    },
+    {
+      "source": "tests/live-backend-aas.qa.cjs",
+      "sha256": "f04076ded7f20fddc6bc0116cb266762f1ba36db45ecc94497606823a9b7f552",
+      "targets": [
+        "tests/browser/live-backend-aas.qa.cjs"
+      ],
+      "note": "Moved; imports/fixture paths updated; browser host and executable configurable"
+    },
+    {
+      "source": "tests/service-actions.test.cjs",
+      "sha256": "d09f39a87e3e86c14417e4e9e17f7ff99f295260b39d3c0f91e9a116e8024cc8",
+      "targets": [
+        "tests/js/service-actions.test.cjs"
+      ],
+      "note": "Moved; imports/fixture paths updated; browser host and executable configurable"
+    },
+    {
+      "source": "tests/submodel-upload.test.cjs",
+      "sha256": "f234263d80dc91d8cbfdba1388b2aa500999deeb61bbfcf567fb7fb6bcdb5bde",
+      "targets": [
+        "tests/js/submodel-upload.test.cjs"
+      ],
+      "note": "Moved; imports/fixture paths updated; browser host and executable configurable"
+    },
+    {
+      "source": "tests/test_backend_bindings.py",
+      "sha256": "054f738b0e56dd9bb824a3a09167ca80a566364e4c189ea113b7f73b6eaa872a",
+      "targets": [
+        "tests/python/test_backend_bindings.py"
+      ],
+      "note": "Moved; imports/fixture paths updated; browser host and executable configurable"
+    },
+    {
+      "source": "tests/test_backend_lifecycle.py",
+      "sha256": "6c7be72dbfce7e89d36cb8db7800ba55e5b65ee413b18134a7fc213ea981ec90",
+      "targets": [
+        "tests/python/test_backend_lifecycle.py"
+      ],
+      "note": "Moved; imports/fixture paths updated; browser host and executable configurable"
+    },
+    {
+      "source": "tests/test_backend_workspace.py",
+      "sha256": "76c7dac1ffa6ad76068ad4adb107d1f5ec32bb6eee7b52b01afd3e8e9fc3b756",
+      "targets": [
+        "tests/python/test_backend_workspace.py"
+      ],
+      "note": "Moved; imports/fixture paths updated; browser host and executable configurable"
+    },
+    {
+      "source": "tests/test_repository_proxy.py",
+      "sha256": "85b0a4b9860565618c1b72dc097806ef21203c2551f22ad922e7e0c6729bd350",
+      "targets": [
+        "tests/python/test_repository_proxy.py"
+      ],
+      "note": "Moved; imports/fixture paths updated; browser host and executable configurable"
+    },
+    {
+      "source": "tests/test_rule_test_proxy.py",
+      "sha256": "4a77ba4f877e25ba5fefe6e9d748d02a0ea0bdd849fc06b291294628768b4a62",
+      "targets": [
+        "tests/python/test_rule_test_proxy.py"
+      ],
+      "note": "Moved; imports/fixture paths updated; browser host and executable configurable"
+    },
+    {
+      "source": "tests/test_service_edit.py",
+      "sha256": "000d16723c1e051c81fd82e663e43ce1688d41a95f848dc124615e80ca3c28b6",
+      "targets": [
+        "tests/python/test_service_edit.py"
+      ],
+      "note": "Moved; imports/fixture paths updated; browser host and executable configurable"
+    },
+    {
+      "source": "tests/test_template_import.py",
+      "sha256": "0ae0935b49b59ef8ecc3757674b14c3008b755e353a3220f78b77d625c2e1906",
+      "targets": [
+        "tests/python/test_template_import.py"
+      ],
+      "note": "Moved; imports/fixture paths updated; browser host and executable configurable"
+    }
+  ],
+  "excluded": [
+    "__pycache__/",
+    "*.pyc"
+  ],
+  "storageKeys": "unchanged",
+  "javaBackend": "../GUC_AASFramework-upload"
+}

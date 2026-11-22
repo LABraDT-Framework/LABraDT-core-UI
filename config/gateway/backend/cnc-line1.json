@@ -1,0 +1,284 @@
+{
+  "machineId": "cnc-line1",
+  "machineType": "CNC",
+  "protocol": "OPC_UA",
+  "comment": "Full CNC — all signals explicit.",
+  "connection": {
+    "endpoint": "opc.tcp://opcua-cnc:4840/cnc/mock/server/"
+  },
+  "mappings": [
+    {
+      "sourceAddress": "ns=2;i=334",
+      "idShort": "VendorName",
+      "valueType": "xs:string",
+      "category": "CONSTANT",
+      "unit": ""
+    },
+    {
+      "sourceAddress": "ns=2;i=335",
+      "idShort": "VendorRevision",
+      "valueType": "xs:string",
+      "category": "CONSTANT",
+      "unit": ""
+    },
+    {
+      "sourceAddress": "ns=2;i=336",
+      "idShort": "Version",
+      "valueType": "xs:string",
+      "category": "CONSTANT",
+      "unit": ""
+    },
+    {
+      "sourceAddress": "ns=2;i=8",
+      "idShort": "XAxisStatus",
+      "valueType": "xs:string",
+      "unit": "",
+      "valueMap": {
+        "1": "ACTIVE",
+        "0": "INACTIVE"
+      }
+    },
+    {
+      "sourceAddress": "ns=2;i=131",
+      "idShort": "OperationMode",
+      "valueType": "xs:string",
+      "unit": "",
+      "valueMap": {
+        "1": "AUTO",
+        "2": "MDI"
+      }
+    },
+    {
+      "sourceAddress": "ns=2;i=138",
+      "idShort": "ProgramStatus",
+      "valueType": "xs:string",
+      "unit": "",
+      "valueMap": {
+        "2": "RUNNING",
+        "1": "ACTIVE",
+        "0": "STOPPED"
+      }
+    },
+    {
+      "sourceAddress": "ns=2;i=314",
+      "idShort": "SpindleTurnDirection",
+      "valueType": "xs:string",
+      "unit": "",
+      "valueMap": {
+        "1": "CLOCKWISE",
+        "2": "COUNTER_CLOCKWISE"
+      }
+    },
+    {
+      "sourceAddress": "ns=2;i=145",
+      "idShort": "FeedHold",
+      "valueType": "xs:string",
+      "unit": "",
+      "valueMap": {
+        "true": "HELD",
+        "false": "RUNNING"
+      }
+    },
+    {
+      "sourceAddress": "ns=2;i=140",
+      "idShort": "BlockMode",
+      "valueType": "xs:string",
+      "unit": "",
+      "valueMap": {
+        "true": "ENABLED",
+        "false": "DISABLED"
+      }
+    },
+    {
+      "sourceAddress": "ns=2;i=11",
+      "idShort": "XAxisInactive",
+      "valueType": "xs:string",
+      "unit": "",
+      "valueMap": {
+        "true": "INACTIVE",
+        "false": "ACTIVE"
+      }
+    },
+    {
+      "sourceAddress": "ns=2;i=12",
+      "idShort": "XAxisReferenced",
+      "valueType": "xs:string",
+      "unit": "",
+      "valueMap": {
+        "true": "REFERENCED",
+        "false": "NOT_REFERENCED"
+      }
+    },
+    {
+      "sourceAddress": "ns=2;i=13",
+      "idShort": "XAxisRotational",
+      "valueType": "xs:string",
+      "unit": "",
+      "valueMap": {
+        "true": "ROTATIONAL",
+        "false": "LINEAR"
+      }
+    },
+    {
+      "sourceAddress": "ns=2;i=311",
+      "idShort": "SpindleSpeed",
+      "valueType": "xs:double",
+      "unit": "rpm",
+      "validRange": [
+        0,
+        8000
+      ],
+      "deadband": 2.0
+    },
+    {
+      "sourceAddress": "ns=2;i=330",
+      "idShort": "SpindleCommandedSpeed",
+      "valueType": "xs:double",
+      "unit": "rpm",
+      "validRange": [
+        0,
+        8000
+      ],
+      "deadband": 2.0
+    },
+    {
+      "sourceAddress": "ns=2;s=Temperature",
+      "idShort": "Temperature",
+      "valueType": "xs:double",
+      "unit": "°C",
+      "validRange": [
+        0,
+        150
+      ],
+      "deadband": 0.5
+    },
+    {
+      "sourceAddress": "ns=2;s=XAxisPos",
+      "idShort": "XAxisPos",
+      "valueType": "xs:string",
+      "unit": "m,m,m"
+    },
+    {
+      "sourceAddress": "ns=2;i=6",
+      "idShort": "XAxisLoad",
+      "valueType": "xs:double",
+      "unit": "%",
+      "validRange": [
+        0,
+        100
+      ],
+      "deadband": 5.0
+    },
+    {
+      "sourceAddress": "ns=2;i=9",
+      "idShort": "XAxisTorque",
+      "valueType": "xs:double",
+      "unit": "Nm",
+      "validRange": [
+        0,
+        50
+      ],
+      "deadband": 5.0
+    },
+    {
+      "sourceAddress": "ns=2;i=10",
+      "idShort": "XAxisCommandedTorque",
+      "valueType": "xs:double",
+      "unit": "Nm",
+      "validRange": [
+        0,
+        50
+      ],
+      "deadband": 5.0
+    },
+    {
+      "sourceAddress": "ns=2;i=7",
+      "idShort": "XAxisPower",
+      "valueType": "xs:double",
+      "unit": "kW",
+      "validRange": [
+        0,
+        20
+      ],
+      "deadband": 5.0
+    },
+    {
+      "sourceAddress": "ns=2;i=124",
+      "idShort": "ActualFeedrate",
+      "valueType": "xs:double",
+      "unit": "mm/min",
+      "validRange": [
+        0,
+        2000
+      ],
+      "deadband": 1.0
+    },
+    {
+      "sourceAddress": "ns=2;i=141",
+      "idShort": "CommandedFeedrate",
+      "valueType": "xs:double",
+      "unit": "mm/min",
+      "validRange": [
+        0,
+        2000
+      ],
+      "deadband": 1.0
+    },
+    {
+      "sourceAddress": "ns=2;i=132",
+      "idShort": "ActualOverride",
+      "valueType": "xs:double",
+      "unit": "%",
+      "validRange": [
+        0,
+        120
+      ],
+      "deadband": 2.0
+    },
+    {
+      "sourceAddress": "ns=2;i=17",
+      "idShort": "XAxisActualPosition",
+      "valueType": "xs:double",
+      "unit": "m",
+      "sourceUnit": "mm",
+      "targetUnit": "m",
+      "validRange": [
+        -1000,
+        1000
+      ],
+      "deadband": 0.1
+    },
+    {
+      "sourceAddress": "ns=2;i=18",
+      "idShort": "XAxisCommandedPosition",
+      "valueType": "xs:double",
+      "unit": "m",
+      "sourceUnit": "mm",
+      "targetUnit": "m",
+      "validRange": [
+        -1000,
+        1000
+      ],
+      "deadband": 0.1
+    },
+    {
+      "sourceAddress": "ns=2;i=27",
+      "idShort": "XAxisRemainingDistance",
+      "valueType": "xs:double",
+      "unit": "m",
+      "sourceUnit": "mm",
+      "targetUnit": "m",
+      "validRange": [
+        0,
+        2000
+      ],
+      "deadband": 0.1
+    },
+    {
+      "sourceAddress": "ns=2;i=42",
+      "idShort": "WriteTargetX",
+      "valueType": "xs:string",
+      "unit": ""
+    }
+  ]
+}
