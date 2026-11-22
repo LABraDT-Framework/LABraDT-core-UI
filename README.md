@@ -139,26 +139,6 @@ Then **Check** and **Install**, and restart the Runtime. The UI starts the Servi
 
 ---
 
-## `unified_cli.py` → UI Migration Reference
-
-| CLI menu | UI (System page unless noted) |
-|---|---|
-| Integrator · Gateway · Install a ready config file | **Install Config File** (file or paste). Uses the CLI validation, including the rejection of plain-text passwords. Also installs the ready configs in `configs-*` folders. |
-| Integrator · Gateway · Browse a live machine | **Browse Live Machine**: OPC UA (asyncua) or MQTT (paho-mqtt), pick signals, name / type / unit. Credentials become `${DT_<MACHINE>_USERNAME/PASSWORD}` placeholders. |
-| (set credential variables before starting the gateway) | **Credential variables**: the values stay in the controller's memory and are passed to the Gateway process. They are never written to disk. |
-| Integrator · Engine · List / Add / Set / Delete rule | **Engine · Rules in AASX**: table, **Add Rule**, **Edit**, **Delete** in `MachineTool.aasx`. Uses the same condition keywords (`greater_than`, `less_than`, `equals`, `out_of_bounds`). |
-| Integrator · Engine · Verify / Backup AASX | **Verify AASX**, **Backup AASX** (`MachineTool_backup_<timestamp>.aasx`) |
-| Integrator · Engine · Edit AASX in VS Code | Not needed for rules; the AASX page of the UI edits AAS content |
-| Integrator · Service · Register / List / Delete | **Register Service** (script / Dockerfile upload to the Engine storage, default args), **Details**, **Delete**. Delete warns about rules that use the service and removes the storage file. |
-| Integrator · Service · Nested services guide | **Nested Services**, plus a hint in the register dialog |
-| Operator · Gateway / Engine · Start / Stop / Monitor | **Components**: Start, Stop, Force stop (for a process that was not started by the UI), Logs, health. **Start Stack** starts Runtime → Gateway → Engine and waits for each one. |
-| Operator · Engine · Initialize / Shutdown / Status / History | **Engine · Operator**: Initialize, Shutdown, state badge, Transition History, Sensor Values |
-| Operator · Service · Trigger / History / Status / Result / Stop | **Trigger** (one or more services, runs per service, dynamic args, live status), **Running** with Stop, **History** with Result, lookup by execution ID |
-
-Configuration changes (machine configs, AASX rules, service registry) are refused while automatic execution is running. Stop it in the top bar first. Operator actions such as triggers stay available.
-
----
-
 ## Process Control
 
 For each project, the controller runs Maven in a supervised background process. The output goes to `runtime/logs/<component>.log`.
