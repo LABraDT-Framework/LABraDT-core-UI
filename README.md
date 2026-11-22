@@ -1,3 +1,9 @@
+<!-- Include project logo -->
+<p align="center">
+  <img src="https://github.com/LABraDT-Framework/.github/blob/main/docs/images/LABraDT_HG.png" alt="LABraDT Logo" width="200">
+</p>
+
+
 # LABraDT UI — Configure and Start the Digital Twin
 
 **Component:** UI Controller and Web Frontend  
