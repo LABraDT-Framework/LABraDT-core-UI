@@ -1,0 +1,350 @@
+services:
+  ui:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.ui
+    restart: unless-stopped
+    env_file:
+      - {path: ./config/opcua/backend.env, required: false}
+    environment:
+      GATEWAY_HEALTH_URL: http://gateway:8085/api/submodel/health
+      DEMO_CONTROLLER_BASE_URL: http://demo-controller:8090
+      DEMO_GATEWAY_HEALTH_URL: http://demo-gateway:8085/api/submodel/health
+      ENGINE_BASE_URL: http://engine:8080
+      SERVICES_BASE_URL: http://service-manager:8082
+      AAS_BASE_URL: http://aas-repository:8081
+      GATEWAY_CONFIG_DIR: /app/config/gateway/backend
+      GATEWAY_PLUGIN_DIR: /app/data/gateway-plugins/backend
+      BACKEND_STORE_PATH: /data/backend-config.json
+      UI_HOST: 0.0.0.0
+      UI_PORT: 8090
+      GUC_OPCUA_SECURITY_DIR: /opcua-security
+      GUC_COMPOSE_PROJECT: ${COMPOSE_PROJECT_NAME:-ui_v09}
+      GUC_GATEWAY_SERVICE: gateway
+    ports:
+      - "8090:8090"
+    # The controller serves the UI while upstream services are starting/offline.
+    # Backend readiness remains enforced by its health checks and Start validation.
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8090/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - ./config/gateway/backend:/app/config/gateway/backend
+      - ./data/gateway-plugins/backend:/app/data/gateway-plugins/backend
+      - ui-backend-data:/data
+      - ./data/opcua-security/backend:/opcua-security
+    networks: [default, demo]
+
+  service-manager:
+    restart: unless-stopped
+    image: maven:3.9-eclipse-temurin-25
+    working_dir: /workspace
+    command: >
+      bash -lc "mvn -pl service-manager-app -am -DskipTests package &&
+      java -jar service-manager-app/target/service-manager-app-0.0.1-SNAPSHOT.jar"
+    environment:
+      SERVER_PORT: 8082
+      SPRING_DATASOURCE_URL: jdbc:h2:file:/data/service-registry
+      ENGINE_RESULT_ENDPOINT: http://engine:8080/engine/result
+    ports:
+      - "8082:8082"
+    volumes:
+      - ../GUC_AASFramework-upload/service-execution:/workspace
+      - service-data:/data
+      - maven-cache:/root/.m2
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8082/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      start_period: 180s
+      retries: 12
+
+  aas-repository:
+    restart: unless-stopped
+    image: eclipsebasyx/aas-environment:2.0.0-milestone-15@sha256:313da867059233e3c07e17a8ac21153a1f8fa0d02eada4e6b1b9f9e86afbd321
+    ports:
+      - "8081:8081"
+    depends_on:
+      aas-mongo:
+        condition: service_healthy
+    volumes:
+      - ./config/basyx.properties:/application/application.properties:ro
+      - ./data/repository:/application/seed:ro
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8081/shells?limit=1"]
+      interval: 10s
+      timeout: 5s
+      start_period: 60s
+      retries: 12
+
+  aas-mongo:
+    restart: unless-stopped
+    image: mongo:8.0
+    volumes: ["aas-mongo-data:/data/db"]
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "quit(db.adminCommand('ping').ok ? 0 : 1)"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  service-seed:
+    image: python:3.12-slim
+    command: ["python", "/app/service_seed.py"]
+    environment:
+      SERVICE_MANAGER_URL: http://service-manager:8082
+    volumes:
+      - ./scripts/service_seed.py:/app/service_seed.py:ro
+    depends_on:
+      service-manager:
+        condition: service_healthy
+    restart: "no"
+
+  engine:
+    restart: unless-stopped
+    image: maven:3.9-eclipse-temurin-25
+    working_dir: /workspace
+    command: >
+      bash -lc "mvn -DskipTests spring-boot:run
+      -Dspring-boot.run.arguments='--server.port=8080
+      --gateway.url=http://gateway:8085/api/submodel/stream
+      --gateway.write.url=http://gateway:8085
+      --service.execution.url=http://service-manager:8082/services/trigger
+      --aas.repository.url=http://aas-repository:8081
+      --engine.aasx.path=/workspace/seed/MachineTool.aasx
+      --engine.callback.url=http://engine:8080/engine/result'"
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../GUC_AASFramework-upload/engine:/workspace
+      - engine-data:/workspace/data
+      - maven-cache:/root/.m2
+      - ./data/repository:/workspace/seed:ro
+    depends_on:
+      gateway:
+        condition: service_healthy
+      aas-repository:
+        condition: service_healthy
+      service-seed:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8080/engine/health"]
+      interval: 10s
+      timeout: 5s
+      start_period: 180s
+      retries: 12
+
+  gateway:
+    restart: unless-stopped
+    image: maven:3.9-eclipse-temurin-25
+    working_dir: /workspace
+    command: ["bash", "/deployment/start-gateway.sh"]
+    env_file:
+      - {path: ./config/opcua/backend.env, required: false}
+    environment:
+      GUC_OPCUA_SECURITY_DIR: /opcua-security
+    ports:
+      - "8085:8085"
+    volumes:
+      - ../GUC_AASFramework-upload/gateway:/workspace
+      - ./config/gateway/backend:/docker-configs:ro
+      - ./data/gateway-plugins/backend:/gateway-plugins:ro
+      - ./deploy/gateway-plugin-host:/plugin-host-source:ro
+      - ./deploy/start-gateway.sh:/deployment/start-gateway.sh:ro
+      - maven-cache:/root/.m2
+      - ./data/opcua-security/backend:/opcua-security
+    depends_on:
+      opcua-cnc:
+        condition: service_healthy
+      opcua-molder:
+        condition: service_healthy
+      mqtt-broker:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8085/api/submodel/health"]
+      interval: 10s
+      timeout: 5s
+      start_period: 180s
+      retries: 12
+
+  opcua-cnc:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.mocks
+    command: ["python", "sample_server.py"]
+    ports:
+      - "4840:4840"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('127.0.0.1',4840),3).close()"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  opcua-molder:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.mocks
+    command: ["python", "injection_molder_server.py"]
+    ports:
+      - "4841:4841"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('127.0.0.1',4841),3).close()"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  mqtt-broker:
+    restart: unless-stopped
+    image: eclipse-mosquitto:2
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./config/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+    healthcheck:
+      test: ["CMD", "mosquitto_sub", "-h", "127.0.0.1", "-t", "$$SYS/broker/version", "-C", "1", "-W", "3"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  mqtt-publisher:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.mocks
+    command: ["python", "mqtt_molder_publisher.py", "--host", "mqtt-broker", "--port", "1883"]
+    depends_on:
+      mqtt-broker:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('mqtt-broker',1883),3).close()"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  demo-controller:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.ui
+    env_file:
+      - {path: ./config/opcua/demo.env, required: false}
+    environment:
+      BACKEND_CONTROL_ENABLED: "false"
+      GUC_COMPOSE_PROJECT: ${COMPOSE_PROJECT_NAME:-ui_v09}
+      GUC_GATEWAY_SERVICE: demo-gateway
+      GATEWAY_HEALTH_URL: http://demo-gateway:8085/api/submodel/health
+      GATEWAY_CONFIG_DIR: /app/config/gateway/demo
+      GATEWAY_PLUGIN_DIR: /app/data/gateway-plugins/demo
+      UI_PORT: 8090
+      GUC_OPCUA_SECURITY_DIR: /opcua-security
+    volumes:
+      - ./config/gateway/demo:/app/config/gateway/demo
+      - ./data/gateway-plugins/demo:/app/data/gateway-plugins/demo
+      - ./data/opcua-security/demo:/opcua-security
+    networks: [demo]
+    ports: ["18090:8090"]
+    depends_on:
+      demo-gateway:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8090/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  demo-gateway:
+    restart: unless-stopped
+    image: maven:3.9-eclipse-temurin-25
+    working_dir: /workspace
+    command: ["bash", "/deployment/start-gateway.sh"]
+    env_file:
+      - {path: ./config/opcua/demo.env, required: false}
+    environment:
+      GUC_CONFIG_PATH: file:/demo-configs
+      GUC_OPCUA_SECURITY_DIR: /opcua-security
+    volumes:
+      - ../GUC_AASFramework-upload/gateway:/source:ro
+      - ./config/gateway/demo:/demo-configs:ro
+      - ./data/gateway-plugins/demo:/gateway-plugins:ro
+      - ./deploy/gateway-plugin-host:/plugin-host-source:ro
+      - ./deploy/start-gateway.sh:/deployment/start-gateway.sh:ro
+      - maven-cache:/root/.m2
+      - ./data/opcua-security/demo:/opcua-security
+    networks: [demo]
+    ports: ["18085:8085"]
+    depends_on:
+      demo-opcua-cnc:
+        condition: service_healthy
+      demo-opcua-molder:
+        condition: service_healthy
+      demo-mqtt-broker:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8085/api/submodel/health"]
+      interval: 10s
+      timeout: 5s
+      start_period: 180s
+      retries: 12
+
+  demo-opcua-cnc:
+    restart: unless-stopped
+    build: { context: ., dockerfile: deploy/Dockerfile.mocks }
+    command: ["python", "sample_server.py"]
+    networks: [demo]
+    ports: ["14840:4840"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('127.0.0.1',4840),3).close()"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  demo-opcua-molder:
+    restart: unless-stopped
+    build: { context: ., dockerfile: deploy/Dockerfile.mocks }
+    command: ["python", "injection_molder_server.py"]
+    networks: [demo]
+    ports: ["14841:4841"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('127.0.0.1',4841),3).close()"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  demo-mqtt-broker:
+    restart: unless-stopped
+    image: eclipse-mosquitto:2
+    volumes: ["./config/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro"]
+    networks: [demo]
+    ports: ["11883:1883"]
+    healthcheck:
+      test: ["CMD", "mosquitto_sub", "-h", "127.0.0.1", "-t", "$$SYS/broker/version", "-C", "1", "-W", "3"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  demo-mqtt-publisher:
+    restart: unless-stopped
+    build: { context: ., dockerfile: deploy/Dockerfile.mocks }
+    command: ["python", "mqtt_molder_publisher.py", "--host", "demo-mqtt-broker", "--port", "1883"]
+    networks: [demo]
+    depends_on:
+      demo-mqtt-broker:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('demo-mqtt-broker',1883),3).close()"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+networks:
+  demo:
+
+volumes:
+  ui-backend-data:
+  maven-cache:
+  service-data:
+  engine-data:
+  aas-mongo-data:

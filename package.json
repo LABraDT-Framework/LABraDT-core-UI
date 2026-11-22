@@ -1,0 +1,19 @@
+{
+  "name": "guc-ui-v091",
+  "version": "0.9.1",
+  "packageManager": "pnpm@11.25.0",
+  "private": true,
+  "description": "LABraDT UI maintenance and browser regression tooling",
+  "scripts": {
+    "test": "node --test tests/js/*.test.cjs",
+    "test:browser": "node tests/browser/engine-overview-ui.qa.cjs",
+    "test:gateway": "node tests/browser/gateway-multi-sme.qa.cjs",
+    "test:backend": "node tests/browser/live-backend-aas.qa.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

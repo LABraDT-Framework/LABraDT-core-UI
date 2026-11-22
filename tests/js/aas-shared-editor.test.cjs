@@ -1,0 +1,13 @@
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
+const sandbox={};vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../../frontend/assets/js/model/aas-templates.js'),'utf8'),sandbox);const api=sandbox.GucAasTemplates;
+const plain=value=>JSON.parse(JSON.stringify(value));
+test('shared AAS editor round-trips unknown metadata and unsupported sibling types',()=>{
+ const environment={assetAdministrationShells:[{id:'urn:aas',idShort:'Machine',modelType:'AssetAdministrationShell',assetInformation:{assetKind:'Instance',globalAssetId:'urn:asset'},displayName:[{language:'de',text:'Maschine'},{language:'en',text:'Machine'}],submodels:[{type:'ModelReference',keys:[{type:'Submodel',value:'urn:sm'}]}]}],submodels:[{id:'urn:sm',idShort:'Telemetry',modelType:'Submodel',administration:{version:'2',revision:'3'},semanticId:{type:'ExternalReference',keys:[{type:'GlobalReference',value:'urn:semantic'}]},submodelElements:[{idShort:'Sensor',modelType:'Property',valueType:'xs:double',value:'20',valueId:{type:'ExternalReference',keys:[{type:'GlobalReference',value:'urn:value'}]},description:[{language:'en',text:'Keep me'}]},{idShort:'Manual',modelType:'File',contentType:'application/pdf',value:'/manual.pdf'}]}]};
+ const item=api.normalizeImport(environment)[0];item.submodels[0].elements[0].value=25;
+ const result=plain(api.toAasEnvironment(item));assert.deepEqual(result.submodels[0].administration,{version:'2',revision:'3'});assert.deepEqual(result.submodels[0].semanticId,environment.submodels[0].semanticId);
+ assert.equal(result.submodels[0].submodelElements[0].value,'25');assert.deepEqual(result.submodels[0].submodelElements[0].description,environment.submodels[0].submodelElements[0].description);assert.deepEqual(result.submodels[0].submodelElements[1],environment.submodels[0].submodelElements[1]);assert.equal(result.assetAdministrationShells[0].displayName[0].text,'Maschine');
+});
+test('shared status, type, unit and uploaded template origin survive real Repository reload',()=>{
+ const item={id:'Machine',name:'Machine',type:'Asset',status:'Active',version:'1',submodels:[{id:'Telemetry',identifier:'urn:sm',templateOrigin:{id:'upload:custom',name:'custom.aasx',version:'2',source:'Uploaded AASX template · custom.aasx'},elements:[{id:'Temperature',kind:'Property',valueType:'xs:double',value:20,unit:'deg C'}]}]};
+ const loaded=api.normalizeImport(api.toAasEnvironment(item))[0];assert.equal(loaded.status,'Active');assert.equal(loaded.type,'Asset');assert.equal(loaded.submodels[0].elements[0].unit,'deg C');assert.equal(loaded.submodels[0].templateOrigin.source,item.submodels[0].templateOrigin.source);
+});
