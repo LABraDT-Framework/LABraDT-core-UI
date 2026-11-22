@@ -2,7 +2,7 @@
 
 | Component | Project folder (next to this folder) | Port |
 |---|---|---|
-| Runtime (Service Manager) | `runtime-labradt-framework` | 8082 |
+| Runtime | `runtime-labradt-framework` | 8082 |
 | Gateway | `gateway-labradt-framework` | 8085 |
 | Engine | `engine-labradt-framework` | 8080 |
 
