@@ -19,23 +19,6 @@ start-ui.bat            # creates .venv, installs requirements.txt, starts the U
 Then open <http://localhost:8090>, open **System**, check (or **Browse…** to) the three project folders and click **Start Stack**.
 On Linux / macOS, use `./start-ui.sh`.
 
-## What changed compared to `ui-labradt-framework`
-
-* **Look and feel** from the exhibition UI: `assets/css/exhibition.css` (stronger lines, readable
-  labels, brand-blue logo filter), the exhibition part of `pipline.css`, and the label "Pipeline".
-* **System page** (sidebar → System) with `assets/js/features/stack-control.js`,
-  `assets/css/stack.css` and the controller module `backend/stack.py` (routes `/api/stack/*`).
-* **Overview strip** "LABraDT Stack" with the status of the three components, **Start Stack**,
-  **Stop Stack**.
-* **Project folders** instead of the former `GUC_AASFramework-upload` monorepo
-  (`backend/settings.py`). The Gateway page now edits the machine configs in the gateway project
-  (`dt-gateway-app/src/main/resources/configs`). The UI starts the Gateway with that folder as
-  `dt.framework.config-path`, so a config change needs only a Gateway restart, not a rebuild.
-* The Overview Gateway card (**Start** / **Stop** / **Logs**) uses the same process control. It
-  also works when the Engine is not running yet.
-* **No Demo / Custom environments any more.** The UI always works against the real stack. Work
-  moves between machines with **Export Project** / **Import Project** (see below).
-
 ## Project folders, hand-over and export / import
 
 **System → Project** shows the three component projects the UI configures and starts:
