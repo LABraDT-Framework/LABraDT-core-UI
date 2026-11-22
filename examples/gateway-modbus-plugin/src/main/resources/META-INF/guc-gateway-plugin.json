@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "plugin:modbus-example",
+  "name": "Modbus TCP · holding registers",
+  "version": "0.9.1",
+  "protocol": "MODBUS",
+  "adapterClass": "org.labradt.examples.ModbusAdapter",
+  "translatorClass": "org.labradt.examples.ModbusTranslator",
+  "configurationClass": "org.labradt.examples.ModbusConfiguration",
+  "enabledProperty": "dt.adapter.modbus.enabled"
+}

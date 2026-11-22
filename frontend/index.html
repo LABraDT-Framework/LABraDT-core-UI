@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Rapid Application Development Toolkit for Digital Twins | LABraDT</title>
+  <link rel="icon" href="data:," />
+  <script src="assets/js/model/environment.js?v=1"></script>
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/overview.css" />
+  <link rel="stylesheet" href="assets/css/workspace.css" />
+  <link rel="stylesheet" href="assets/css/rules.css" />
+  <link rel="stylesheet" href="assets/css/dialogs.css" />
+  <link rel="stylesheet" href="assets/css/gateway-management.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+  <link rel="stylesheet" href="assets/css/exhibition.css" />
+  <link rel="stylesheet" href="assets/css/stack.css" />
+</head>
+<body>
+  <svg class="brand-filter-defs" width="0" height="0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="brand-color-filter" color-interpolation-filters="sRGB">
+        <feFlood flood-color="#00519e" result="brand-color" />
+        <feComposite in="brand-color" in2="SourceAlpha" operator="in" />
+      </filter>
+    </defs>
+  </svg>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand" aria-label="LABraDT">
+        <img class="brand-logo" src="assets/images/LABraDT_v2-transparent.png" alt="LABraDT" />
+        <div class="brand-name">LABraDT</div>
+      </div>
+      <nav class="nav" aria-label="Main navigation">
+        <button class="active" data-nav="overview">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10.5V20h5v-5h4v5h5v-9.5"/></svg>
+          <span>Overview</span>
+        </button>
+        <button data-nav="aas">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="m4 7.5 8 4.5 8-4.5"/><path d="M12 12v9"/></svg>
+          <span>AAS</span>
+        </button>
+        <button data-nav="gateway">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 4v5"/><path d="M6 20v-5h12v5"/><rect x="9" y="9" width="6" height="5" rx="1"/><rect x="3" y="18" width="6" height="3" rx="1"/><rect x="15" y="18" width="6" height="3" rx="1"/></svg>
+          <span>Gateway</span>
+        </button>
+        <button data-nav="services">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg>
+          <span>Services</span>
+        </button>
+        <button data-nav="rules">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 4h14v16H5z"/><path d="m8 9 2 2 4-4M8 15h8"/></svg>
+          <span>Rules</span>
+        </button>
+        <button data-nav="system">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="5" rx="1"/><rect x="3" y="15" width="18" height="5" rx="1"/><path d="M7 6.5h.01M7 17.5h.01M11 6.5h6M11 17.5h6M12 9v6"/></svg>
+          <span>System</span>
+        </button>
+      </nav>
+      <div class="side-meta">
+        <div><strong>System Time</strong><span id="systemTime">--</span></div>
+        <div><strong>Framework Version</strong>2.3.1</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <h1>The Rapid Application Development Toolkit for <span class="title-lock">Digital Twins</span></h1>
+        <div class="top-actions">
+          <button class="btn primary" id="startAll">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M8 5v14l11-7z"/></svg>
+            Start Backend
+          </button>
+          <button class="btn fill-danger" id="stopAll">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M7 7h10v10H7z"/></svg>
+            Stop Backend
+          </button>
+        </div>
+      </header>
+
+      <div class="content">
+        <section class="panel stack-strip" id="stackStrip" aria-label="LABraDT stack">
+          <div class="stack-strip-title"><strong>LABraDT Stack</strong><span class="small" id="stackStripJob">Checking components…</span></div>
+          <div class="stack-strip-pills" id="stackStripPills"></div>
+          <div class="stack-strip-actions">
+            <button class="btn primary" id="stackStripStart">Start Stack</button>
+            <button class="btn fill-danger" id="stackStripStop">Stop Stack</button>
+            <button class="btn ghost" id="stackStripOpen">System</button>
+          </div>
+        </section>
+        <section class="component-grid" aria-label="Component control">
+          <article class="panel component" data-component="Gateway" id="gatewayCard">
+            <div class="component-head">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 4v5"/><path d="M6 20v-5h12v5"/><rect x="9" y="9" width="6" height="5" rx="1"/><rect x="3" y="18" width="6" height="3" rx="1"/><rect x="15" y="18" width="6" height="3" rx="1"/></svg>
+              <h2>Gateway</h2>
+              <span class="badge status draft" id="gatewayStatusBadge">Checking…</span>
+            </div>
+            <div class="kv">
+              <span>REST Port</span><strong id="gatewayRestPort">8085</strong>
+                            <span>Process</span><strong id="gatewayProcessText">UI backend not connected</strong>
+            </div>
+            <div class="component-actions">
+              <button class="btn primary" id="gatewayStartStop">Start</button>
+              <button class="btn ghost" id="gatewayRefresh">Refresh</button>
+              <button class="btn ghost" id="gatewayLogs">Logs</button>
+            </div>
+            <div class="connection-summary" aria-label="Gateway live connections">
+              <div class="summary-row">
+                <span>Live Store</span>
+                <strong id="gatewayStoreText">–</strong>
+              </div>
+              <div class="summary-row">
+                <span>Connected Machines</span>
+                <strong id="gatewayConnectedText">Waiting for health</strong>
+              </div>
+              <div class="machine-list" id="gatewayMachineList"></div>
+            </div>
+            <div class="technology-summary">
+              <div class="technology-summary-head"><strong>Gateway Plugins</strong><button class="btn primary" id="addGatewayPlugin">Add GW Plugin</button></div>
+              <div class="technology-list" id="overviewGatewayPlugins"></div>
+            </div>
+          </article>
+
+          <article class="panel component" data-component="Services" id="servicesCard">
+            <div class="component-head">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg>
+              <h2>Services</h2>
+              <span class="badge status draft" id="servicesStatusBadge">Checking backend</span>
+            </div>
+            <div class="kv">
+              <span>REST Port</span><strong id="servicesRestPort">8082</strong>
+              <span>Registered</span><strong id="serviceCount">0 services</strong>
+              <span>Adapters</span><strong id="servicesRuntimeText">Checking…</strong>
+              <span>Last Execution</span><strong id="servicesLastExecution">Checking…</strong>
+            </div>
+            <div class="component-actions">
+              <button class="btn ghost" id="serviceRefresh">Refresh Backend</button>
+              <button class="btn ghost" id="serviceLogs">Logs</button>
+            </div>
+            <div class="technology-summary">
+              <div class="technology-summary-head"><strong>Runtimes</strong><button class="btn primary" id="addServiceTechnology">Add Service Plugin</button></div>
+              <div class="technology-list" id="overviewServiceTechnologies"></div>
+            </div>
+          </article>
+
+          <article class="panel component" id="overviewAasCard">
+            <div class="component-head">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="m4 7.5 8 4.5 8-4.5"/><path d="M12 12v9"/></svg>
+              <h2>AAS</h2>
+              <span class="badge draft" id="overviewAasCount">0 entries</span>
+            </div>
+            <div class="overview-entity-list" id="overviewAasList" aria-label="AAS overview"></div>
+          </article>
+
+          <article class="panel component" id="overviewRulesCard">
+            <div class="component-head">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 4h14v16H5z"/><path d="m8 9 2 2 4-4M8 15h8"/></svg>
+              <h2>Rules</h2>
+              <span class="badge draft" id="overviewRulesCount">0 / 0 enabled</span>
+            </div>
+            <div class="overview-entity-list" id="overviewRulesList" aria-label="Rules overview"></div>
+            <div class="overview-entity-list" id="overviewAasxRulesList" aria-label="Engine rules of the AASX"></div>
+          </article>
+        </section>
+
+        <section class="panel workspace">
+          <div class="workspace-body active" id="aasTab">
+            <section class="section detail aas-detail-panel" id="aasDetail"></section>
+            <section class="section aas-repository-panel">
+              <div class="section-head">
+                <h3 id="aasRepositoryTitle">AAS Repository</h3>
+                <span class="badge draft" id="aasSourceBadge" style="display:none"></span>
+                <span id="aasRepositoryActions">
+                  <button class="btn primary" id="createAas">Create AAS</button>
+                  <button class="btn blue" id="importAas">Import JSON</button>
+                  <input id="aasImportFile" type="file" accept=".json,application/json" hidden />
+                </span>
+              </div>
+              <div class="toolbar">
+                <input id="aasSearch" type="search" placeholder="Search AAS..." />
+                <select class="select" id="aasTypeFilter" aria-label="AAS type filter">
+                  <option>All Types</option>
+                  <option>Asset</option>
+                  <option>Submodel</option>
+                  <option>Concept Description</option>
+                </select>
+              </div>
+              <div class="aas-result-count" id="aasResultCount"></div>
+              <div class="aas-repository-list" id="aasRows"></div>
+            </section>
+          </div>
+
+          <div class="workspace-body" id="rulesTab">
+            <section class="section">
+              <div class="component-head">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 4h14v16H5z"/><path d="m8 9 2 2 4-4M8 15h8"/></svg>
+                <h2>Rules</h2>
+                <span class="badge status draft" id="engineStatusBadge">Checking backend</span>
+              </div>
+              <div class="kv">
+                <span>REST Port</span><strong>8080</strong>
+                <span>Java State</span><strong id="engineJavaState">Checking…</strong>
+                <span>AASX Rules (loaded by the Engine)</span><strong id="engineLoadedRuleCount">—</strong>
+                <span>UI Rules</span><strong id="rulesPageCount">0 / 0 enabled</strong>
+                <strong id="overviewRuleCount" hidden>0</strong>
+              </div>
+              <div class="component-actions">
+                <button class="btn primary" id="addRule">Add Rule</button>
+                <button class="btn ghost" id="refreshEngineBackend">Refresh Backend</button>
+                <button class="btn ghost" id="engineLogs">Logs</button>
+              </div>
+              <div class="engine-overview-workflows" id="rulesWorkflows"></div>
+              <div class="aasx-rules" id="aasxRulesSection">
+                <div class="section-head aasx-rules-head"><h3>Engine rules in the AASX</h3><span class="badge draft" id="aasxRulesCount">–</span><button class="btn ghost" id="aasxRuleAdd">Add Engine Rule</button></div>
+                <p class="small" id="aasxRulesInfo">Rules the Engine loads from the engine project's AASX (Rules_SM). Rules created above that the Engine can run are listed above with an Engine badge.</p>
+                <div class="engine-overview-workflows" id="aasxRulesList"></div>
+              </div>
+            </section>
+          </div>
+
+          <div class="workspace-body" id="engineTab">
+            <section class="section" style="grid-column:1 / -1"><div class="section-head"><h3>Java Engine Backend</h3><span class="badge draft" id="javaEngineBackendStatus">Checking · 8080</span><button class="btn ghost" id="refreshEngineBackendPage">Refresh</button></div><p class="small">The Java Engine loads rules from AASX, consumes the Gateway stream and triggers Services itself. This panel reads its existing backend APIs; it does not duplicate evaluation.</p><div class="detail-grid" id="javaEngineSummary"><span>State</span><strong>Checking…</strong><span>Rules loaded</span><strong>—</strong><span>Rejected pushes</span><strong>—</strong><span>Last checked</span><strong>—</strong></div><details open><summary>Recent state transitions</summary><pre class="empty-note" id="javaEngineHistory">Checking…</pre></details><details><summary>Recent submodel data</summary><pre class="empty-note" id="javaEngineData">Checking…</pre></details></section>
+            <section class="section" style="grid-column:1 / -1"><div class="section-head"><h3>Service Execution History</h3><span class="badge draft" id="serviceBackendStatus">Checking Services · 8082</span></div><div class="table-wrap"><table><thead><tr><th>Completed</th><th>Execution ID</th><th>Service</th><th>Status</th><th>Duration</th><th>Output / Error</th></tr></thead><tbody id="backendServiceExecutionRows"></tbody></table></div></section>
+            <section class="section" style="grid-column:1 / -1"><div class="section-head"><h3>Shared Reference Status</h3><span class="badge draft">Browser model</span></div><div id="sharedModelStatus"></div><details><summary>Inspect shared identities and rules</summary><pre class="empty-note" id="sharedModelSnapshot" style="max-height:320px;overflow:auto"></pre></details></section>
+          </div>
+
+          <div class="workspace-body" id="gatewayTab">
+            <section class="section" style="grid-column:1 / -1"><div class="section-head"><h3>Gateway Java Client Plugins</h3><button class="btn primary" id="addGatewayPluginPage">Add GW Plugin</button><button class="btn ghost" id="refreshGatewayPlugins">Check Applied State</button><span class="badge draft" id="gatewayManagementStatus">Checking…</span></div><div id="pluginCatalog"></div><p class="small" id="gatewayRestartHint"></p><details><summary>Apply staged changes</summary><p class="small">Restart the Gateway:</p><pre id="gatewayRestartCommand"></pre><p class="small">This restarts only the Gateway, not the Engine or the Service Manager. Then select Check Applied State.</p></details></section>
+            <section class="section">
+              <div class="section-head">
+                <h3>Machine Connections</h3>
+                <button class="btn primary" id="addGateway">Add Machine Connection</button>
+                <button class="btn ghost" id="loadGatewayConfigs">Reload Configs</button>
+              </div>
+              <div class="empty-note gateway-empty-note" id="gatewayEmptyNote">
+                <strong>No machine connections yet.</strong>
+                <span>1. Add a Gateway plugin above (e.g. the MQTT client from gateway-implementations). 2. Add Machine Connection and enter your MQTT broker. 3. Add the topics as Signal Mappings and Save to Gateway.</span>
+              </div>
+              <div id="gatewayEditor">
+              <div class="toolbar"><select class="select" id="gatewayConfigSelect" aria-label="Machine configuration"></select><span class="badge" id="gatewayDraftBadge">Loaded</span><span class="badge" id="gatewayEnabledBadge">Enabled</span><button class="btn ghost" id="toggleGatewayConnection">Disable Connection</button><button class="btn danger" id="deleteGatewayConfig">Delete Connection</button></div><p class="small" id="gatewayConfigHint">Loaded from Gateway configuration on disk.</p>
+              <div class="form-grid">
+                <label class="field">Machine ID (backend identity)<input id="gatewayMachineId" value="" placeholder="machine-1" /></label>
+                <label class="field">Display Name (browser only)<input id="gatewayDisplayName" /><button class="btn ghost" id="saveConnectionName">Save Display Name</button></label>
+                <label class="field">Protocol<select id="gatewayProtocol"><option>MQTT</option></select></label>
+                <label class="field full"><span id="gatewayEndpointLabel">Broker URL</span><input id="gatewayEndpoint" value="" placeholder="tcp://localhost:1883" /></label>
+                <label class="field">Machine Type<input id="gatewayMachineType" value="" placeholder="Generic" /></label>
+                <label class="field">Status<span class="small">Mappings are persisted in Gateway JSON.</span></label>
+              </div>
+              <section class="mqtt-settings" id="gatewayMqttSection" aria-label="MQTT broker settings">
+                <div class="section-head"><h3>MQTT Broker Settings</h3></div>
+                <div class="form-grid">
+                  <label class="field">Topic filter (optional)<input id="gatewayTopicFilter" placeholder="factory/machine-1/#" /><span class="small">Empty: the plugin subscribes exactly to the mapped topics. Never use # on a shared broker.</span></label>
+                  <label class="field">Quiet window (ms)<input id="gatewayQuietWindow" type="number" min="0" value="15000" /><span class="small">Machine counts as STALE when no message arrives in this window · 0 disables the check.</span></label>
+                  <label class="field">Authentication<select id="gatewayMqttAuth"><option value="Anonymous">Anonymous</option><option value="Environment">Username / password from environment variables</option></select></label>
+                  <label class="field mqtt-auth-field">Username variable<input id="gatewayMqttUserEnv" placeholder="DT_MACHINE_1_USERNAME" /></label>
+                  <label class="field mqtt-auth-field">Password variable<input id="gatewayMqttPassEnv" placeholder="DT_MACHINE_1_PASSWORD" /></label>
+                </div>
+                <p class="small">The config file stores only <code>${VARIABLE}</code> placeholders; the Gateway resolves them at start. Enter the values on the System page under <em>Credential variables</em>. Payloads may be a JSON envelope <code>{"value": …, "timestamp": …, "quality": "GOOD"}</code> or a bare value; writes are published retained with QoS 1.</p>
+              </section>
+              <section class="opcua-security" id="gatewaySecuritySection" aria-label="OPC UA security and authentication">
+                <div class="section-head"><h3>OPC UA Security &amp; Authentication</h3><button class="btn ghost" id="prepareOpcuaCertificates" type="button">Prepare Certificates</button></div>
+                <div class="form-grid" id="gatewaySecurityFields"></div>
+                <p class="small">Authentication is independent of the security policy. Saved passwords stay hidden. Prepare Certificates generates the client identity and confirms the machine's server certificate.</p>
+              </section>
+              <details style="margin-top:16px">
+                <summary style="cursor:pointer;font-weight:700;color:var(--navy)">Advanced connection settings</summary>
+                <div class="form-grid" style="margin-top:12px">
+                  <label class="field">Initial reconnect backoff (ms)<input id="gatewayReconnectInitial" type="number" min="100" value="1000" /></label>
+                  <label class="field">Maximum reconnect backoff (ms)<input id="gatewayReconnectMax" type="number" min="100" value="30000" /></label>
+                </div>
+                <div class="small">Adapters ignore settings that do not apply to their protocol.</div>
+              </details>
+              <div class="section-head" style="margin-top:18px">
+                <h3>Signal Mappings</h3>
+                <button class="btn blue" id="addMapping">Add Mapping</button>
+                <button class="btn ghost" id="discoverOpcuaNodes">Explore Address Space</button>
+              </div>
+              <div class="live-source-bar"><span class="badge draft" id="monitorStatus">Real Gateway · connecting</span><span class="small" id="monitorMessage">Connecting to Gateway live data.</span><button class="btn ghost" id="monitorReal">Reconnect</button></div>
+              <div class="mapping-list" id="mappingRows"></div>
+              <p class="small" id="connectionPluginInfo"></p><p class="small">Machine ID and signal idShort are backend identities. Saving a different Machine ID creates another configuration; it does not rename the old one. Changing/removing a signal identity can invalidate rule references. Display names never change identities.</p>
+              </div>
+            </section>
+            <section class="section gateway-preview-panel" id="gatewayPreviewPanel">
+              <div class="section-head gateway-preview-header">
+                <h3>Generated Machine Config</h3>
+                <span class="badge draft">Preview</span>
+                <button class="btn ghost gateway-preview-toggle" id="toggleGatewayPreview" type="button" aria-expanded="true" aria-controls="gatewayPreviewBody" title="Collapse generated machine config"><span class="gateway-preview-toggle-icon" aria-hidden="true">›</span><span>Hide</span></button>
+              </div>
+              <div id="gatewayPreviewBody">
+                <pre class="empty-note" id="configPreview"></pre>
+                <div class="component-actions">
+                  <button class="btn primary" id="validateGatewayConfig">Validate Config</button>
+                  <button class="btn ghost" id="testGatewayConnection">Test Connection</button>
+                  <button class="btn blue" id="saveGatewayConfig">Save to Gateway</button>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="workspace-body" id="bindingsTab">
+            <section class="section" style="grid-column:1 / -1">
+              <div class="section-head">
+                <h3>Gateway ↔ AAS Bindings</h3>
+                <button class="btn primary" id="addBinding">Add Binding</button>
+              </div>
+              <div class="binding-controls">
+                <span class="badge draft" id="bindingCount">0 bindings</span>
+              </div>
+              <p class="small">Bindings connect Gateway signals (port 8085) with AAS properties of the repository (port 8081). Reads and writes are manual: Test, Read or Sync per binding.</p>
+              <div id="bindingIssues"></div>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>Binding</th><th>Direction</th><th>Gateway Signal</th><th>AAS Property</th><th>Interval</th><th>Last Value / Status</th><th>Actions</th></tr></thead>
+                  <tbody id="bindingRows"></tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+
+          <div class="workspace-body" id="servicesTab">
+            <section class="section" id="serviceRunnersSection">
+              <div class="section-head">
+                <h3>Runtimes</h3>
+                <span class="badge draft" id="serviceRunnerCount">0 runtimes</span>
+                <button class="btn primary" id="addServiceRunner">Add Service Plugin</button>
+              </div>
+              <p class="small">Runtimes are plugins of the Runtime. Each one executes one technology: a fixed category (SCRIPT, CONTAINER, EXTERNAL) plus a language or tool inside it, e.g. SCRIPT / LUA or SCRIPT / PYTHON. Add one from a plugin project folder or a built .jar. The registry below holds service instances, and each instance names the runtime it needs.</p>
+              <div class="runner-groups" id="serviceRunnerGroups"></div>
+            </section>
+            <section class="section">
+              <div class="section-head">
+                <h3>Service Registry <span class="small">(instances)</span></h3>
+                <span class="badge draft" id="serviceRegistrySource">Checking backend</span>
+                <button class="btn primary" id="addService">Register Service</button>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr><th>Service ID</th><th>Technology (runtime)</th><th>File / Endpoint</th><th>Runtime</th><th>Status</th><th>Actions</th></tr>
+                  </thead>
+                  <tbody id="serviceRows"></tbody>
+                </table>
+              </div>
+            </section>
+            <section class="section" id="serviceDetailSection">
+              <div class="section-head">
+                <h3>Service Detail</h3>
+                <span class="badge" id="serviceDetailBadge">Ready</span>
+              </div>
+              <div class="form-grid">
+                <label class="field">Service ID<input id="serviceDetailId" /></label>
+                <label class="field">Display Name<input id="serviceDetailName" /></label>
+                <label class="field">Runtime (technology)<select id="serviceDetailRuntime"><option value="LUA">Lua</option><option value="CONTAINER">Container</option><option value="PYTHON">Python</option><option value="REST">REST</option></select></label>
+                <label class="field">Runtime<span class="small" id="serviceRuntimeSupport"></span></label>
+                <label class="field full">File / Endpoint (file, folder, URL or any value)<input id="serviceDetailFile" /></label>
+                <label class="field full">Description<textarea id="serviceDetailDescription" rows="3"></textarea></label>
+                <label class="field full">Default Args<textarea id="serviceDetailArgs" rows="4"></textarea></label>
+                <label class="field">Function / Operation ID<input id="serviceDetailOperationId" /></label>
+                <label class="field">Function Display Name<input id="serviceDetailOperationName" /></label>
+                <label class="field">Input Definition<input id="serviceDetailInput" /></label>
+                <label class="field">Output Definition<input id="serviceDetailOutput" /></label>
+                <label class="field full">Result Argument<input id="serviceDetailResultArg" /><span class="small">The named merged argument is the service result used by rules.</span></label>
+              </div>
+              <div class="component-actions">
+                <button class="btn primary" id="saveServiceDetail">Save Service</button>
+                <button class="btn blue" id="triggerServiceDetail">Test Trigger</button>
+                <button class="btn danger" id="deleteServiceDetail">Delete Service</button>
+              </div>
+            </section>
+          </div>
+
+          <div class="workspace-body" id="systemTab">
+            <section class="section stack-section" id="stackProjectSection">
+              <div class="section-head">
+                <h3>Project</h3>
+                <span class="badge draft" id="projectState">–</span>
+                <span class="section-head-actions">
+                  <button class="btn primary" id="projectExport">Export Project</button>
+                  <button class="btn blue" id="projectImport">Import Project</button>
+                  <button class="btn ghost" id="projectApply">Apply to Projects</button>
+                </span>
+              </div>
+              <p class="small">The three component projects this UI configures and starts. What you configure is written into them: machine configs into the gateway project, rules (AASX) and service files into the engine project, the Gateway plugins and runtimes into each project's <code>plugins/</code> folder (at every start and plugin install, or now with <em>Apply to Projects</em>). The projects then also run on their own with <code>mvn spring-boot:run</code>. <em>Export Project</em> saves everything, plugins included, as one .zip; <em>Import Project</em> restores such a file into the folders chosen here.</p>
+              <div class="project-folders" id="projectFolders"></div>
+              <input type="file" id="projectImportFile" accept=".zip,application/zip" hidden />
+            </section>
+            <section class="section stack-section" id="stackComponentsSection">
+              <div class="section-head">
+                <h3>Components</h3>
+                <span class="badge draft" id="stackJobBadge">Idle</span>
+                <span class="section-head-actions">
+                  <label class="stack-check"><input type="checkbox" id="stackBuildFirst" /> Build first</label>
+                  <button class="btn primary" id="stackStartAll">Start Stack</button>
+                  <button class="btn fill-danger" id="stackStopAll">Stop Stack</button>
+                  <button class="btn ghost" id="stackRefresh">Refresh</button>
+                </span>
+              </div>
+              <p class="small">Starts the three component projects with Maven in dependency order: Runtime (Service Manager) → Gateway → Engine. The first start of a project builds it (<code>mvn -DskipTests install</code>); tick <em>Build first</em> to rebuild after code changes. The Gateway reads its machine configs directly from the gateway project folder, so config changes only need a Gateway restart.</p>
+              <div class="stack-cards" id="stackCards"></div>
+              <details class="stack-details"><summary>Toolchain</summary><div class="detail-grid" id="stackToolchain"></div></details>
+            </section>
+
+            <section class="section stack-section" id="stackGatewaySection">
+              <div class="section-head">
+                <h3>Gateway · Machine Configs</h3>
+                <span class="badge draft" id="stackConfigCount">–</span>
+                <span class="section-head-actions">
+                  <button class="btn primary" id="stackInstallConfig">Install Config File</button>
+                  <button class="btn blue" id="stackBrowseMachine">Browse Live Machine</button>
+                </span>
+              </div>
+              <p class="small" id="stackConfigDir"></p>
+              <div class="table-wrap"><table><thead><tr><th>Machine</th><th>Protocol</th><th>Endpoint</th><th>Signals</th><th>State</th><th>Actions</th></tr></thead><tbody id="stackConfigRows"></tbody></table></div>
+              <div class="stack-subhead"><strong>Credential variables</strong><span class="small">Configs hold only <code>${DT_…}</code> placeholders. Values entered here stay in the UI controller's memory and are passed to the Gateway at its next start; they are never written to disk.</span></div>
+              <div class="stack-credentials" id="stackCredentials"></div>
+            </section>
+
+            <section class="section stack-section" id="stackRulesSection">
+              <div class="section-head">
+                <h3>Engine · Rules in AASX</h3>
+                <span class="badge draft" id="stackRuleCount">–</span>
+                <span class="section-head-actions">
+                  <button class="btn primary" id="stackAddRule">Add Rule</button>
+                  <button class="btn ghost" id="stackVerifyAasx">Verify AASX</button>
+                  <button class="btn ghost" id="stackBackupAasx">Backup AASX</button>
+                </span>
+              </div>
+              <p class="small" id="stackAasxInfo"></p>
+              <div class="table-wrap"><table><thead><tr><th>Rule</th><th>Watch</th><th>Condition</th><th>Action (Service)</th><th>Cooldown</th><th>Description</th><th>Actions</th></tr></thead><tbody id="stackRuleRows"></tbody></table></div>
+            </section>
+
+            <section class="section stack-section" id="stackEngineSection">
+              <div class="section-head">
+                <h3>Engine · Operator</h3>
+                <span class="badge draft" id="stackEngineState">–</span>
+                <span class="section-head-actions">
+                  <button class="btn primary" id="stackEngineInit">Initialize</button>
+                  <button class="btn danger" id="stackEngineShutdown">Shutdown</button>
+                  <button class="btn ghost" id="stackEngineHistory">Transition History</button>
+                  <button class="btn ghost" id="stackEngineData">Sensor Values</button>
+                </span>
+              </div>
+              <p class="small" id="stackEngineStateText">Initialize re-loads the AASX (rules) while automatic execution is stopped.</p>
+              <pre class="empty-note stack-output" id="stackEngineOutput" hidden></pre>
+            </section>
+
+            <section class="section stack-section" id="stackServicesSection">
+              <div class="section-head">
+                <h3>Services · Registry &amp; Executions</h3>
+                <span class="badge draft" id="stackServiceCount">–</span>
+                <span class="section-head-actions">
+                  <button class="btn primary" id="stackRegisterService">Register Service</button>
+                  <button class="btn blue" id="stackTriggerServices">Trigger Selected</button>
+                  <button class="btn ghost" id="stackServiceGuide">Nested Services</button>
+                </span>
+              </div>
+              <div class="table-wrap"><table><thead><tr><th><span class="sr-only">Select</span></th><th>Service ID</th><th>Type</th><th>Runtime</th><th>Display Name</th><th>File</th><th>Actions</th></tr></thead><tbody id="stackServiceRows"></tbody></table></div>
+              <div class="stack-subhead"><strong>Running</strong><span class="small" id="stackRunningNote"></span></div>
+              <div class="table-wrap"><table><thead><tr><th>Service</th><th>Status</th><th>Execution ID</th><th></th></tr></thead><tbody id="stackRunningRows"></tbody></table></div>
+              <div class="stack-subhead"><strong>History</strong><span class="small">Completed executions cached by the Service Manager since it started.</span>
+                <form class="stack-lookup" id="stackLookupForm"><input id="stackLookupId" placeholder="Execution ID" aria-label="Execution ID" /><button class="btn ghost" type="submit">Status / Result</button></form></div>
+              <div class="table-wrap"><table><thead><tr><th>Completed</th><th>Service</th><th>Status</th><th>Duration</th><th>Output / Error</th><th></th></tr></thead><tbody id="stackHistoryRows"></tbody></table></div>
+            </section>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-head">
+        <h2 id="modalTitle">Dialog</h2>
+        <button class="btn icon-only" id="modalClose" aria-label="Close dialog">×</button>
+      </div>
+      <form id="modalForm">
+        <div class="modal-body" id="modalBody"></div>
+        <div class="modal-actions" id="modalActions">
+          <button class="btn" type="button" id="modalCancel">Cancel</button>
+          <button class="btn primary" type="submit" id="modalSubmit">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <dialog class="binding-dialog" id="bindingDialog" aria-labelledby="bindingDialogTitle">
+    <div class="modal-head"><h2 id="bindingDialogTitle">Gateway ↔ AAS Binding</h2></div>
+    <form id="bindingForm"></form>
+  </dialog>
+
+  <script src="assets/js/model/service-actions.js"></script>
+  <script src="assets/js/model/shared-model.js"></script>
+  <script src="assets/js/model/aas-templates.js"></script>
+  <script src="assets/js/features/submodel-upload.js"></script>
+  <script src="assets/js/features/plugin-flow.js"></script>
+  <script src="assets/js/features/connection-management.js"></script>
+  <script src="assets/js/features/opcua-setup.js"></script>
+  <script src="assets/js/features/monitor.js"></script>
+  <script src="assets/js/features/engine-runtime.js"></script>
+  <script src="assets/js/backend/engine-backend.js"></script>
+  <script src="assets/js/features/rule-editor.js"></script>
+  <script src="assets/js/backend/backend-workspace.js"></script>
+  <script src="assets/js/backend/backend-links.js"></script>
+  <script src="assets/js/features/bindings.js"></script>
+  <script src="assets/js/features/aas-service-links.js?v=9"></script>
+
+  <script src="assets/js/backend/backend-lifecycle.js"></script>
+
+  <script src="assets/js/features/service-files.js"></script>
+  <script src="assets/js/features/service-plugins.js"></script>
+  <script src="assets/js/core/ui.js"></script>
+  <script src="assets/js/core/workspace.js"></script>
+  <script src="assets/js/pages/aas.js"></script>
+  <script src="assets/js/pages/gateway.js"></script>
+  <script src="assets/js/pages/services.js"></script>
+  <script src="assets/js/pages/actions.js"></script>
+  <script src="assets/js/app/state.js"></script>
+  <script src="assets/js/app/bootstrap.js"></script>
+  <script src="assets/js/features/stack-control.js"></script>
+  <script src="assets/js/features/address-explorer.js"></script>
+</body>
+</html>

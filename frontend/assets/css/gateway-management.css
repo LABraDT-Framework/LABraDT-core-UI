@@ -1,0 +1,9 @@
+.gateway-plugin { border-top: 1px solid var(--line); padding: 12px 0; }
+.gateway-plugin .plugin-delete { margin-top: 8px; }
+.management-error { color: var(--danger); overflow-wrap: anywhere; }
+.plugin-hash { overflow-wrap: anywhere; min-width: 0; }
+#pluginReview { margin-top: 18px; }
+#gatewayRestartCommand { white-space: pre-wrap; overflow-wrap: anywhere; }
+#gatewayTab .toolbar, #gatewayTab .section-head { flex-wrap: wrap; }
+#gatewayTab .toolbar > .select { flex: 1 1 100%; width: 100%; min-width: 0; }
+#gatewayTab .toolbar > .badge { flex-shrink: 0; }

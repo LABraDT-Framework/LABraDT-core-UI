@@ -1,0 +1,77 @@
+/* Exhibition display: keep the existing layout, strengthen its visual boundaries. */
+:root {
+  --bg: #e9eef4;
+  --surface-soft: #eef2f6;
+  --line: #8192a8;
+  --line-strong: #5d718b;
+  --text: #102239;
+  --muted: #43556d;
+  --nav: #e5ebf2;
+  --nav-2: #dbe3ed;
+  --primary: #006b58;
+  --primary-strong: #005443;
+  --blue: #124b9b;
+  --brand-blue: #00519e;
+  --danger: #b4232b;
+  --shadow: 0 3px 10px rgba(16, 34, 57, .1);
+}
+.brand-filter-defs { position: absolute; pointer-events: none; }
+.brand .brand-logo { filter: url(#brand-color-filter); }
+.brand-name { color: var(--brand-blue); }
+.sidebar, .topbar, .tabs, .component-head, .section-head { border-width: 2px; }
+.panel, .workspace, .modal, dialog { border: 2px solid var(--line); }
+.component-head { background: var(--surface); }
+.section-head { padding-bottom: 12px; }
+.btn, .select, input:not([type="checkbox"]):not([type="range"]), select, textarea { border-color: var(--line-strong); }
+.btn.blue { color: var(--blue); border-color: var(--blue); }
+.btn.danger { color: var(--danger); border-color: var(--danger); }
+.btn.fill-danger { color: #fff; }
+.nav button, .nav .pipline-entry { color: #344860; font-size: 18px; }
+.nav button.active { box-shadow: inset 0 0 0 2px var(--line-strong); }
+.small, .kv, .detail-grid, .field, .side-meta { color: var(--muted); }
+.badge { border: 1px solid #50856f; }
+.badge.draft { border-color: #8494a8; color: #334155; }
+.badge.warning { border-color: #9b742b; }
+.badge.offline { border-color: #b65c61; }
+.engine-instance, .service-link-section, .rule-flow-node, .engine-flow-node { border-width: 2px; }
+.engine-instance, .service-link-section { border-color: var(--line); }
+.engine-instance-head { border-bottom: 2px solid var(--line); }
+.engine-flow-node { border-color: #6b7f99; background: #f2f5f8; color: var(--muted); }
+.engine-flow-node.complete, .engine-flow-node.active { border-color: #167044; background: #edf7f0; box-shadow: none; }
+.engine-flow-node.complete .engine-flow-icon, .engine-flow-node.active .engine-flow-icon { background: #167044; }
+.engine-flow-node.failed { border-color: #a6323a; }
+.engine-flow-node.skipped { opacity: 1; background: #e6ebf1; }
+.twin-card .note.error { color: #9c202b; background: #fff1f2; border: 2px solid #b4232b; }
+.engine-flow-connector { color: #405e83; }
+.engine-flow-connector svg { stroke-width: 2.5; }
+.overview-entity-row, .technology-item, .mapping-row { border-color: var(--line); }
+th { background: #e3eaf2; }
+th, td { border-bottom-color: #91a0b3; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible {
+  outline: 3px solid var(--blue); outline-offset: 3px;
+}
+
+/* Native buttons retain click, Enter and Space semantics; aria-checked is the saved state. */
+.rule-switch {
+  display: inline-flex; align-items: center; justify-content: flex-start; gap: 8px;
+  min-height: 44px; padding: 5px 8px; border: 1px solid var(--line-strong);
+  border-radius: 7px; background: #fff; color: var(--text); font: inherit;
+  font-size: 12px; font-weight: 750; cursor: pointer; white-space: nowrap;
+}
+.switch-track { display: inline-block; position: relative; flex: 0 0 46px; width: 46px; height: 26px;
+  border: 2px solid #344860; border-radius: 999px; background: #485b72; }
+.switch-track::after { content: ""; position: absolute; width: 18px; height: 18px; left: 2px; top: 2px;
+  border-radius: 50%; background: #fff; box-shadow: 0 1px 2px #0004; transition: transform 150ms ease; }
+.rule-switch[aria-checked="true"] .switch-track { background: #006b58; border-color: #004c3f; }
+.rule-switch[aria-checked="true"] .switch-track::after { transform: translateX(20px); }
+.switch-state { min-width: 55px; }
+.rule-switch:hover { background: #eaf0f7; }
+.rule-switch:disabled { opacity: .6; cursor: not-allowed; }
+.engine-instance-actions, .row-actions { align-items: center; flex-wrap: wrap; }
+@media (prefers-reduced-motion: reduce) { .switch-track::after { transition: none; } }
+@media (forced-colors: active) {
+  .switch-track { background: Canvas; border-color: ButtonText; }
+  .switch-track::after { background: ButtonText; }
+  .rule-switch[aria-checked="true"] .switch-track { background: Highlight; border-color: Highlight; }
+  .rule-switch[aria-checked="true"] .switch-track::after { background: HighlightText; }
+}

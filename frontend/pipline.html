@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pipeline | LABraDT</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="assets/css/pipline.css" />
+  <script src="assets/js/pipline/data.js" defer></script>
+  <script src="assets/js/pipline/view.js" defer></script>
+</head>
+<body>
+  <svg class="symbol-library" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="brand-color-filter" color-interpolation-filters="sRGB">
+        <feFlood flood-color="#00519e" result="brand-color" />
+        <feComposite in="brand-color" in2="SourceAlpha" operator="in" />
+      </filter>
+      <symbol id="icon-aas" viewBox="0 0 24 24"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3zM4 7.5l8 4.5 8-4.5M12 12v9"/></symbol>
+      <symbol id="icon-gateway" viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="18" r="3"/><circle cx="19" cy="18" r="3"/><path d="m10.5 7.5-4 8m7-8 4 8M8 18h8"/></symbol>
+      <symbol id="icon-services" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+      <symbol id="icon-engine" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 1v4m6-4v4M9 19v4m6-4v4M1 9h4m-4 6h4m14-6h4m-4 6h4"/></symbol>
+    </defs>
+  </svg>
+  <div class="app">
+    <main>
+      <header class="topbar"><div>The Rapid Application Development Toolkit for <span>Digital Twins</span></div><span class="readonly-badge">Read only</span></header>
+      <div class="content">
+        <section class="page-heading" aria-label="Viewer controls">
+          <div><h1>Pipeline</h1><p>Live data flow across your digital twin</p></div>
+          <div class="controls">
+            <label class="sr-only" for="dataSource">Data source</label>
+            <select id="dataSource"><option value="backend">Backend · live</option><option value="preview">Visual demo · sample data</option></select>
+            <span class="live-pill" id="liveState"><i></i><span>CONNECTING</span></span>
+            <label class="sr-only" for="timeWindow">Activity window</label>
+            <select id="timeWindow"><option value="1">1s window</option><option value="5">5s window</option><option value="10">10s window</option></select>
+            <button id="pause" type="button" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 4v12M14 4v12"/></svg><span>Pause</span></button>
+            <button id="fitView" class="icon-button" type="button" aria-label="Fit diagram to view" title="Fit diagram to view"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 3H3v4m10-4h4v4M3 13v4h4m10-4v4h-4"/></svg></button>
+          </div>
+        </section>
+        <div class="source-notice" id="sourceNotice" role="status" hidden>Visual demo · synthetic activity. No backend requests or device commands.</div>
+        <section class="flow-panel" aria-labelledby="flowTitle">
+          <div class="panel-heading"><h2 id="flowTitle">SYSTEM DATA FLOW</h2><span id="flowHint">Waiting for component observations</span></div>
+          <div class="diagram-viewport" id="diagramViewport">
+            <svg class="diagram" id="diagram" viewBox="0 0 1200 470" role="img" aria-label="Services above Engine, Gateway below left and AAS Repository below right, connected by directed data flow paths">
+              <defs>
+                <marker id="arrow-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="m1 1 7 4-7 4"/></marker>
+                <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="m1 1 7 4-7 4"/></marker>
+                <marker id="arrow-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="m1 1 7 4-7 4"/></marker>
+                <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="m1 1 7 4-7 4"/></marker>
+              </defs>
+              <g class="routes" fill="none">
+                <path id="route-telemetry" data-route="telemetry" d="M264 383 C346 383 363 266 472 266" marker-end="url(#arrow-teal)"/>
+                <path id="route-sync" data-route="sync" d="M722 314 C824 314 828 418 924 418" marker-end="url(#arrow-teal)" class="unused-route"/>
+                <path id="route-command" data-route="command" d="M472 313 C367 313 354 419 264 419" marker-end="url(#arrow-amber)" class="unused-route"/>
+                <path id="route-invoke" data-route="invoke" d="M548 235 C574 194 552 151 552 114" marker-end="url(#arrow-blue)"/>
+                <path id="route-result" data-route="result" d="M621 114 C621 162 610 193 629 235" marker-end="url(#arrow-purple)"/>
+                <path id="route-model" data-route="model" d="M924 383 C825 383 819 267 722 267" marker-end="url(#arrow-blue)"/>
+              </g>
+              <g class="route-labels">
+                <text x="310" y="294" class="teal">Telemetry →</text><text x="367" y="427" class="amber">← Commands</text>
+                <text x="463" y="166" class="blue">Invoke ↑</text><text x="656" y="177" class="purple">↓ Result</text>
+                <text x="812" y="294" class="blue">← Read</text><text x="811" y="426" class="teal">Sync →</text>
+              </g>
+              <g id="particles" aria-hidden="true"></g>
+              <g class="packet-label" id="packetLabel" visibility="hidden"><rect x="308" y="323" width="158" height="24" rx="5"/><text x="317" y="339" id="packetText"></text></g>
+              <foreignObject x="460" y="20" width="264" height="104"><div xmlns="http://www.w3.org/1999/xhtml" class="node" id="node-services"><svg class="node-icon"><use href="#icon-services"/></svg><div class="node-copy"><h3>Services</h3><p id="servicesSummary">Checking backend…</p><span id="servicesDetail">Waiting for execution records</span></div><i class="node-dot"></i><small>:8082</small></div></foreignObject>
+              <foreignObject x="472" y="235" width="250" height="112"><div xmlns="http://www.w3.org/1999/xhtml" class="node node-engine" id="node-engine"><svg class="node-icon"><use href="#icon-engine"/></svg><div class="node-copy"><h3>Engine</h3><strong class="state-tag" id="engineState">CHECKING</strong><p id="engineSummary">Waiting for rules</p><span id="engineDetail">Telemetry age unknown</span></div><i class="node-dot"></i><small>:8080</small></div></foreignObject>
+              <foreignObject x="18" y="350" width="246" height="104"><div xmlns="http://www.w3.org/1999/xhtml" class="node" id="node-gateway"><svg class="node-icon"><use href="#icon-gateway"/></svg><div class="node-copy"><h3>Gateway</h3><p id="gatewaySummary">Checking backend…</p><span id="gatewayDetail">Waiting for live values</span></div><i class="node-dot"></i><small>:8085</small></div></foreignObject>
+              <foreignObject x="924" y="350" width="258" height="104"><div xmlns="http://www.w3.org/1999/xhtml" class="node" id="node-aas"><svg class="node-icon"><use href="#icon-aas"/></svg><div class="node-copy"><h3>AAS Repository</h3><p id="aasSummary">Checking backend…</p><span id="aasDetail">Waiting for models</span></div><i class="node-dot"></i><small>:8081</small></div></foreignObject>
+              <image class="brand-mark" href="assets/images/LABraDT_v2-transparent.png" x="1081" y="18" width="92" height="92"/>
+              <text class="diagram-brand" x="1127" y="135" text-anchor="middle">LABraDT</text>
+            </svg>
+          </div>
+          <div class="legend" aria-label="Flow legend"><span><i class="teal-bg"></i>Telemetry</span><span><i class="blue-bg"></i>Read / models</span><span><i class="amber-bg"></i>Commands</span><span><i class="blue-bg"></i>Service call</span><span><i class="purple-bg"></i>Result</span><span><i class="gray-bg"></i>No observed activity</span></div>
+        </section>
+        <section class="activity-panel" aria-labelledby="activityTitle"><div class="activity-heading"><h2 id="activityTitle">Activity · last 60 seconds</h2><span id="activityUnit">Observed updates per second</span></div><div class="chart-wrap"><canvas id="activityChart" role="img" aria-label="Activity timeline of observed component updates"></canvas><span class="empty-chart" id="emptyChart">Waiting for live updates</span></div><div class="chart-caption"><span id="chartStart">−60s</span><span id="activityCount">0 observed updates</span><span>now</span></div></section>
+        <footer class="statusbar"><span id="connectionSummary"><i></i><span>Connecting to backend components…</span></span><span id="checkedAt">Not checked yet</span></footer>
+        <p class="observation-note" id="observationNote">Animation shows observed changes, not a packet trace. Arrows show the architecture; caller identity, device commands and sync traffic are not exposed by the current APIs.</p>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

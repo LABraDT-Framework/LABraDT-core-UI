@@ -1,0 +1,48 @@
+@media (max-width: 1180px) {
+  .app {
+    grid-template-columns: 82px 1fr;
+  }
+
+  .sidebar { padding: 14px 10px; }
+  .brand { justify-items: center; gap: 10px; padding: 8px 0; }
+  .brand .brand-logo { width: 58px; }
+  .brand-name { font-size: 12px; letter-spacing: .035em; }
+  .nav button { grid-template-columns: 1fr; justify-items: center; padding: 12px 8px; }
+  .nav span { display: none; }
+  .side-meta { display: none; }
+  .main { border-right: 0; }
+}
+
+@media (max-width: 860px) {
+  .app { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .topbar { height: auto; align-items: flex-start; flex-direction: column; padding: 14px; }
+  .top-actions { flex-wrap: wrap; }
+  .component-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas: "gateway" "services" "aas" "rules";
+  }
+  .engine-instance-head { grid-template-columns: 1fr auto; }
+  .engine-instance-actions { grid-column: 1 / -1; }
+  .workspace-body.active { grid-template-columns: 1fr; }
+  #aasTab.workspace-body.active { grid-template-columns: 1fr; }
+  #gatewayTab.preview-collapsed.workspace-body.active { grid-template-columns: 1fr; }
+  #gatewayTab.preview-collapsed .gateway-preview-panel { padding: 12px 16px; }
+  #gatewayTab.preview-collapsed .gateway-preview-header { position: static; flex-direction: row; }
+  #gatewayTab.preview-collapsed .gateway-preview-toggle { writing-mode: horizontal-tb; }
+  #gatewayTab.preview-collapsed .gateway-preview-toggle-icon { margin: 0 5px 0 0; }
+  #aasTab .aas-detail-panel { order: 1; }
+  #aasTab .aas-repository-panel { order: 2; }
+  .section + .section { border-left: 0; border-top: 1px solid var(--line); }
+  .form-grid { grid-template-columns: 1fr; }
+  .service-param-head { display: none; }
+  .rule-setup-grid, .rule-condition-row, .service-param-row, .service-condition-grid, .engine-branch-grid { grid-template-columns: 1fr; }
+  .condition-section-title { align-items: flex-start; flex-wrap: wrap; }
+  .condition-mode-field { width: 100%; margin-left: 36px; }
+  .condition-mode-field select { width: 100%; min-width: 0; }
+  .service-link-form-actions { flex-wrap: wrap; }
+  .service-link-action-spacer { display: none; }
+  .signal-mapping-row { grid-template-columns: 1fr auto auto; }
+  .signal-mapping-row .live-cell { grid-column: 1 / -1; grid-row: 2; padding: 8px 0 0; border-left: 0; border-top: 1px solid var(--line); }
+  h1 { font-size: 21px; }
+}
