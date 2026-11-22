@@ -4,6 +4,8 @@
 **Port:** 8090  
 **Overview of all LABraDT projects and the architecture diagram:** [README.md](https://github.com/LABraDT-Framework)
 
+The UI component rovides the graphical user interface for configuring and operating LABraDT. It coordinates service registration, rule configuration, engine operation (start/stop) and machine configuration.
+
 | Component | Project folder (next to this folder) | Port |
 |---|---|---|
 | Runtime | `runtime-labradt-framework` | 8082 |
